@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ransel & Jhuliana | Nuestra boda</title>
+<meta name="description" content="Nos encantaría compartir contigo uno de los días más especiales de nuestras vidas. Descubre nuestra invitación y confirma tu asistencia.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--iv:#F6F2EA;--be:#D8CBB8;--ce:#D2E0E8;--az:#6F97AD;--no:#263544;--bg:var(--iv);--fg:var(--no);--mut:#5d6b78;--ln:rgba(216,203,184,.9);--card:#fff;--link:#3f6b82;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c2630;--fg:#F6F2EA;--mut:#b9c4cd;--ln:rgba(216,203,184,.25);--card:#263544;--link:#9cc1d6;--ce:#2a3a48}}
+:root[data-theme="dark"]{--bg:#1c2630;--fg:#F6F2EA;--mut:#b9c4cd;--ln:rgba(216,203,184,.25);--card:#263544;--link:#9cc1d6;--ce:#2a3a48}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:68px;height:100%}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font:400 16px/1.7 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;margin:0;line-height:1.08}
+h2{font-size:clamp(2rem,6vw,3rem);text-align:center;margin-bottom:1rem}
+p{margin:0 0 1rem}a{color:inherit}
+:focus-visible{outline:2px solid var(--az);outline-offset:3px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:var(--bg);padding:8px;z-index:99}
+header{position:fixed;inset:0 0 auto 0;z-index:30;padding-top:env(safe-area-inset-top,0px);transition:background .4s}
+header.sc{background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
+.bar{max-width:1100px;margin:auto;height:60px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;color:#F6F2EA}header.sc .bar{color:var(--fg)}
+.logo{font:italic 400 1.5rem 'Cormorant Garamond',serif;text-decoration:none}
+nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0}nav a{display:block;text-decoration:none;font-size:.8rem;letter-spacing:.06em;padding:10px 12px;opacity:.9}nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px}
+.burger{display:none;background:none;border:1px solid currentColor;color:inherit;width:44px;height:44px;border-radius:50%;font-size:1.15rem;cursor:pointer}
+@media(max-width:860px){.burger{display:block}nav{position:absolute;top:100%;left:0;right:0;background:var(--bg);color:var(--fg);border-bottom:1px solid var(--ln);display:none;padding:6px 18px 12px}nav.open{display:block}nav ul{flex-direction:column;gap:0}nav a{padding:14px 0;font-size:1rem;border-bottom:1px solid var(--ln)}}
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;color:#F6F2EA;overflow:hidden;background:#1d1a17}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%;animation:zoom 14s ease-out both}@keyframes zoom{from{transform:scale(1.08)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(38,53,68,.55) 0,rgba(38,53,68,0) 30%,rgba(38,53,68,0) 52%,rgba(28,38,48,.88) 100%)}
+.hc{position:relative;z-index:2;text-align:center;padding:0 20px calc(40px + env(safe-area-inset-bottom,0px));max-width:760px;margin:auto}
+.tag{font-size:.74rem;letter-spacing:.4em;opacity:.92}
+.names{font-size:clamp(3.2rem,15vw,7.5rem);font-weight:300;margin:.15em 0;text-shadow:0 2px 24px rgba(0,0,0,.35);animation:up 1.4s .2s both}.names i{font-weight:300;color:var(--be)}
+@keyframes up{from{opacity:0;transform:translateY(16px)}}
+.date{font:300 clamp(1.1rem,3.5vw,1.5rem) 'Cormorant Garamond',serif;letter-spacing:.32em}
+.quote{font:italic 300 1.3rem 'Cormorant Garamond',serif;margin:.8rem auto 1.4rem;max-width:26em;opacity:.95}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 30px;border:1px solid var(--no);background:var(--no);color:var(--iv);font:500 .78rem Inter,sans-serif;letter-spacing:.16em;text-decoration:none;cursor:pointer;transition:.3s;border-radius:2px}
+.btn:hover{background:var(--az);border-color:var(--az);color:#fff}.btn:active{transform:scale(.98)}.btn:disabled{opacity:.5}
+.btn.ln{background:transparent;color:var(--fg);border-color:var(--fg)}.btn.ln:hover{background:var(--fg);color:var(--bg)}
+.hero .btn{background:var(--iv);color:var(--no);border-color:var(--iv)}.hero .btn:hover{background:var(--az);color:#fff;border-color:var(--az)}.hero .btn.ln{background:transparent;color:var(--iv);border-color:rgba(246,242,234,.7)}
+.row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+main>section,.sec{padding:96px 22px;max-width:980px;margin:auto}.band{background:var(--ce);max-width:none;padding:0}.band>.in2{max-width:980px;margin:auto;padding:96px 22px}
+@media(max-width:700px){main>section,.sec{padding:68px 20px}.band>.in2{padding:68px 20px}}
+.count{display:grid;grid-template-columns:repeat(4,1fr);max-width:520px;margin:0 auto;text-align:center}
+.count div{padding:6px 4px;border-left:1px solid var(--be)}.count div:first-child{border:0}
+.count b{display:block;font:300 clamp(2.2rem,10vw,3.6rem)/1 'Cormorant Garamond',serif;font-variant-numeric:tabular-nums}.count b.flip{animation:fl .5s}@keyframes fl{from{opacity:.2;transform:translateY(-4px)}}
+.count span{font-size:.68rem;letter-spacing:.2em;color:var(--mut)}
+.cdm{text-align:center;font:300 2.2rem 'Cormorant Garamond',serif}
+.sub{text-align:center;color:var(--mut);max-width:36em;margin:0 auto 2.2rem}
+.story{font:300 clamp(1.3rem,3.5vw,1.7rem)/1.6 'Cormorant Garamond',serif;text-align:center;max-width:28em;margin:auto}
+.orn{width:60px;height:1px;background:var(--be);margin:0 auto 1.6rem}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:2rem}@media(max-width:700px){.facts{grid-template-columns:1fr}}
+.fact{text-align:center;padding:22px 12px;border-top:1px solid var(--be)}.fact small{display:block;font-size:.7rem;letter-spacing:.24em;color:var(--link);margin-bottom:.4rem}.fact h3{font-size:1.5rem}
+.sw{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin:1.6rem 0}.sw figure{margin:0;text-align:center;font-size:.78rem;color:var(--mut)}.sw span{display:block;width:62px;height:62px;border-radius:50%;border:1px solid var(--be);margin:0 auto 8px}
+.note{border-left:2px solid var(--be);padding:2px 0 2px 18px;margin:1.4rem auto;max-width:38em}.note.b{border-color:var(--az)}
+.loc{display:block;text-decoration:none;text-align:center;padding:30px 18px;border:1px solid var(--be);background:var(--card);transition:.3s}.loc:hover{border-color:var(--az)}
+.loc svg{width:34px;height:34px;stroke:var(--az);fill:none;stroke-width:1.4}.loc h3{font-size:1.7rem;margin:.4rem 0}
+.map{width:100%;aspect-ratio:16/10;border:0;margin-top:20px;filter:saturate(.8)}
+form{max-width:480px;margin:1.6rem auto 0;display:grid;gap:20px}label,legend{font-size:.85rem;color:var(--mut)}
+input[type=text],textarea{width:100%;font:400 1rem Inter,sans-serif;background:var(--card);color:var(--fg);border:1px solid var(--be);padding:14px;border-radius:2px}input[type=text]:focus,textarea:focus{border-color:var(--az);outline:0}textarea{min-height:130px;resize:vertical}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;min-height:54px;padding:0 18px;border:1px solid var(--be);background:var(--card);cursor:pointer;font-size:1rem;color:var(--fg);transition:.25s}.opt:has(input:checked){border-color:var(--az);background:var(--ce)}.opt input{accent-color:var(--no);width:18px;height:18px}
+.err{color:#a3322b;font-size:.82rem;min-height:1.1em;margin:4px 0 0}
+.status{padding:14px;border:1px solid var(--be);background:var(--card);text-align:center;font-size:.92rem}
+.hint{font-size:.78rem;color:var(--mut);text-align:center}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
+.grid button{grid-column:span 4;padding:0;border:0;background:var(--be);cursor:pointer;aspect-ratio:4/5;overflow:hidden}.grid button:nth-child(5n+1){grid-column:span 8;aspect-ratio:auto}
+@media(max-width:620px){.grid button,.grid button:nth-child(5n+1){grid-column:span 6;aspect-ratio:4/5}.grid button:nth-child(5n+1){grid-column:span 12;aspect-ratio:4/3}}
+.grid img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform .8s}.grid button:hover img{transform:scale(1.04)}
+.lb{position:fixed;inset:0;background:rgba(20,28,36,.95);z-index:60;display:none;place-items:center;padding:20px}.lb.on{display:grid;animation:fi .3s}@keyframes fi{from{opacity:0}}
+.lb img{max-width:92vw;max-height:84vh;object-fit:contain}
+.lb button{position:absolute;border:1px solid rgba(246,242,234,.5);background:rgba(20,28,36,.5);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.3rem;cursor:pointer}.lb .x{top:calc(16px + env(safe-area-inset-top,0px));right:14px}.lb .p{left:8px}.lb .n{right:8px}
+.intro p{font-size:1.05rem;text-align:center;max-width:36em;margin:0 auto 1.1rem}
+.gifts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;list-style:none;padding:0;margin:2.4rem 0 0;border-left:1px solid var(--be);border-top:1px solid var(--be)}
+@media(max-width:700px){.gifts{grid-template-columns:repeat(2,1fr)}}
+.gifts li{padding:22px 14px;border-right:1px solid var(--be);border-bottom:1px solid var(--be);background:var(--card);text-align:center}.gifts em{display:block;font:italic 300 1.1rem 'Cormorant Garamond',serif;color:var(--az)}.gifts span{font-size:.95rem}
+.qr{max-width:360px;margin:2rem auto 0;text-align:center;background:#fff;border:1px solid var(--be);padding:26px 22px;color:#263544}
+.qr h3{font:500 .8rem Inter;letter-spacing:.28em;color:var(--link);margin-bottom:14px}.qr img{width:min(280px,100%);height:auto;display:block;margin:0 auto 14px}
+.empty{text-align:center;border:1px dashed var(--be);padding:36px 18px;color:var(--mut);margin-top:24px}
+.verse{background:var(--ce);min-height:80svh;display:grid;place-items:center;text-align:center;padding:100px 24px}
+.verse blockquote{margin:0;font:italic 300 clamp(2.1rem,7vw,3.8rem)/1.25 'Cormorant Garamond',serif;max-width:14em}
+.verse cite{display:block;margin-top:1.6rem;font:500 .8rem Inter;letter-spacing:.3em;font-style:normal;color:var(--link)}.verse .sig{margin-top:3rem;font:italic 1.35rem 'Cormorant Garamond',serif;color:var(--mut)}
+.verse .rv{transition-duration:2s}
+.mu{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--card);border:1px solid var(--be);box-shadow:0 8px 28px rgba(38,53,68,.2);max-width:calc(100vw - 24px)}
+.mu .pill{display:flex;align-items:center;gap:8px;border:0;background:none;color:var(--fg);font:500 .78rem Inter;padding:10px 16px;cursor:pointer;min-height:44px}
+.mu .pn{display:none;width:216px;padding:8px}.mu.open .pn{display:block}.mu.open .pill{display:none}
+.mu iframe{width:200px;height:200px;border:0;display:block;margin:auto;background:#000}
+.mu .st{font-size:.75rem;color:var(--mut);margin:8px 0 6px;text-align:center}.mu .ct{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap}
+.mu .ct button,.mu .ct a{font:500 .72rem Inter;border:1px solid var(--be);background:none;color:var(--fg);padding:0 10px;min-height:36px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.mu input[type=range]{width:100%;accent-color:var(--no)}
+footer{text-align:center;padding:40px 20px 90px;color:var(--mut);font-size:.8rem}
+.rv{opacity:0;transform:translateY(16px);transition:.9s ease}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}.rv{opacity:1;transform:none}}
+.mc{background:var(--card);border:1px solid var(--be);padding:18px 20px;margin-top:12px}.mc b{font:italic 400 1.3rem "Cormorant Garamond",serif}.mc p{margin:.4rem 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+</style></head><body>
+<a class="skip" href="#detalles">Saltar al contenido</a>
+<header id="hd"><div class="bar"><a class="logo" href="#inicio">R & J</a><button class="burger" id="bg" aria-label="Abrir menú" aria-expanded="false" aria-controls="nv">☰</button>
+<nav id="nv" aria-label="Principal"><ul><li><a href="#detalles">Detalles</a></li><li><a href="#vestimenta">Vestimenta</a></li><li><a href="#ubicacion">Ubicación</a></li><li><a href="#rsvp">Confirmar</a></li><li><a href="#galeria">Galería</a></li><li><a href="#regalos">Regalos</a></li><li><a href="#mensajes">Mensajes</a></li></ul></nav></div></header>
+<main>
+<section class="hero" id="inicio" style="max-width:none;padding:0"><img src="img/foto-01.jpg" alt="Ransel y Jhuliana tomados de la mano al atardecer" fetchpriority="high">
+<div class="hc"><div class="tag">NOS CASAMOS</div><h1 class="names">Ransel <i>&</i> Jhuliana</h1><div class="date">17 · 12 · 2026</div>
+<p class="quote">Hay caminos que se vuelven hogar cuando se recorren juntos.</p>
+<div class="row"><button class="btn" id="open">ABRIR NUESTRA INVITACIÓN</button><a class="btn ln" href="#rsvp">CONFIRMAR ASISTENCIA</a></div></div></section>
+
+<section id="cuenta" class="rv" style="padding-bottom:40px"><div class="count" id="cdg"><div><b id="d">--</b><span>DÍAS</span></div><div><b id="h">--</b><span>HORAS</span></div><div><b id="m">--</b><span>MINUTOS</span></div><div><b id="s">--</b><span>SEGUNDOS</span></div></div><p class="cdm" id="cdm" hidden></p></section>
+
+<section id="historia" class="rv" style="padding-top:40px"><div class="orn"></div><h2>Con alegría en el corazón</h2><p class="story">Después de caminar juntos, hemos decidido dar el paso más bonito. Queremos que estés con nosotros el día en que empezamos esta nueva etapa.</p></section>
+
+<div class="band" id="detalles"><div class="in2 rv"><h2>Detalles de la boda</h2><div class="facts"><div class="fact"><small>FECHA</small><h3>Jueves 17 de diciembre de 2026</h3></div><div class="fact"><small>HORA</small><h3>3:00 p. m.</h3></div><div class="fact"><small>LUGAR</small><h3>San Borja, Lima</h3></div></div>
+<div class="row"><a class="btn" id="how" target="_blank" rel="noopener">CÓMO LLEGAR</a><button class="btn ln" id="ics">AGREGAR A MI CALENDARIO</button></div></div></div>
+
+<section id="vestimenta" class="rv"><h2>Un detalle para nuestro gran día</h2><p class="sub">Queremos compartir este momento tan especial contigo. Te invitamos a elegir tu vestimenta dentro de nuestra paleta de colores para acompañarnos en esta celebración.</p>
+<div class="sw"><figure><span style="background:#fff"></span>Blanco</figure><figure><span style="background:#171717"></span>Negro</figure><figure><span style="background:#1B2A4A"></span>Azul marino</figure><figure><span style="background:#243B64"></span>Azul clásico</figure><figure><span style="background:#A9BEDC"></span>Azul claro</figure></div><p class="hint">Los tonos de azul pueden variar.</p>
+<p class="note">Gracias por respetar nuestra paleta de colores y ayudarnos a mantener la armonía de este día tan especial.</p>
+<p class="note b">Esta celebración está organizada sin bebés. Agradecemos mucho tu comprensión y cariño.</p></section>
+
+<div class="band" id="ubicacion"><div class="in2 rv"><h2>Ubicación</h2><p class="sub">Te esperamos aquí. Toca la dirección para abrirla en Google Maps.</p>
+<a class="loc" id="how2" target="_blank" rel="noopener" aria-label="Abrir en Google Maps: Calle Gaspar Monge 150, San Borja, Lima, Perú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.800-7 11-7 11z"/><circle cx="12" cy="10" r="2.500"/></svg><h3>Calle Gaspar Monge 150</h3><p style="margin:0">San Borja, Lima, Perú</p><p class="hint" style="margin:.8rem 0 0">CÓMO LLEGAR →</p></a>
+<iframe class="map" id="mp" title="Mapa de la ubicación de la boda" loading="lazy"></iframe></div></div>
+
+<section id="rsvp" class="rv"><h2>¿Nos acompañas en este día tan especial?</h2><p class="sub">Nos haría mucha ilusión compartir este momento contigo. Confírmanos tu respuesta para ayudarnos a organizar nuestra celebración.</p>
+<form id="rf" novalidate><div><label for="rn">Nombre completo</label><input type="text" id="rn" maxlength="100" autocomplete="name"><p class="err" id="rne" role="alert"></p></div>
+<fieldset><legend>Tu respuesta</legend><label class="opt"><input type="radio" name="a" value="attending">¡Sí, allí estaré!</label><label class="opt"><input type="radio" name="a" value="not_attending">Lo siento, no podré asistir</label><p class="err" id="rae" role="alert"></p></fieldset>
+<button class="btn" type="submit">ENVIAR CONFIRMACIÓN</button><div class="status" id="rs" role="status" hidden></div></form></section>
+
+<section id="galeria" class="rv"><h2>Nuestra historia en imágenes</h2><p class="sub">Pequeños momentos, grandes recuerdos y una historia que nos ha traído hasta aquí.</p><div class="grid" id="gr"></div></section>
+
+<div class="band" id="regalos"><div class="in2"><div class="intro rv"><h2>Lista de regalos</h2>
+<p>Estamos por comenzar una de las etapas más bonitas de nuestras vidas, llena de nuevos propósitos, ilusiones y sueños compartidos.</p>
+<p>Para nosotros, contar con su compañía en nuestro matrimonio será una alegría inmensa y un recuerdo que atesoraremos siempre.</p>
+<p>Si desean tener un detalle con nosotros, hemos preparado una lista de regalos con mucho cariño, pensando en este nuevo capítulo que construiremos juntos.</p>
+<p>Agradecemos de corazón cada muestra de afecto y generosidad. Lo recibiremos con muchísima ilusión y gratitud.</p></div>
+<ul class="gifts" id="gf"></ul></div></div>
+
+<section id="aportes" class="rv"><h2>Aportes voluntarios</h2>
+<p class="sub" style="margin-bottom:1rem">Si desean obsequiarnos algo para esta nueva aventura, hemos habilitado este código QR para quienes quieran brindarnos un aporte voluntario.</p>
+<p class="sub" style="margin-bottom:0">Gracias por ser parte de nuestros sueños y acompañarnos en el inicio de esta hermosa historia juntos.</p>
+<div class="qr"><h3>YAPE / PLIN</h3><img src="img/qr-yape.png" alt="Código QR de Yape/Plin para el aporte voluntario" width="480" height="480"><p style="margin:0;font-size:.9rem">Escanea el código QR para realizar tu aporte voluntario</p></div></section>
+
+<section id="mensajes" class="rv"><h2>Déjanos unas palabras</h2><p class="sub">Queremos guardar los buenos deseos, las palabras bonitas y los recuerdos que nos acompañarán en esta nueva etapa.</p>
+<form id="mf" novalidate><div><label for="mn">Nombre</label><input type="text" id="mn" maxlength="80"><p class="err" id="mne" role="alert"></p></div>
+<div><label for="mm">Mensaje para los novios</label><textarea id="mm" maxlength="500"></textarea><p class="hint" id="cc">0 / 500</p><p class="err" id="mme" role="alert"></p></div>
+<button class="btn" type="submit">DEJAR MI MENSAJE</button><div class="status" id="ms" role="status" hidden></div></form>
+<div id="ml"></div><div class="empty" id="me">Aún no hay mensajes publicados. Los mensajes aprobados aparecerán aquí.</div></section>
+</main>
+<section class="verse"><div class="rv"><blockquote>Las muchas aguas no podrán apagar el amor</blockquote><cite>CANTARES 8:7</cite><p class="sig">Con amor, Ransel & Jhuliana</p></div></section>
+<footer>17 · 12 · 2026 · San Borja, Lima</footer>
+
+<div class="mu" id="mu"><button class="pill" id="mp0" aria-label="Abrir reproductor de música">♪ Música</button>
+<div class="pn" role="group" aria-label="Reproductor de música"><div id="yw"></div><p class="st" id="st" role="status">Sin iniciar</p>
+<div class="ct"><button id="pp">Pausar</button><a href="https://youtu.be/vK6pwU9yABw" target="_blank" rel="noopener">Abrir en YouTube</a><button id="cl" aria-label="Cerrar reproductor">Cerrar</button></div>
+<label class="hint" style="display:block;margin-top:8px">Volumen<input type="range" id="vo" min="0" max="100" value="60"></label></div></div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galería ampliada"><button class="x" id="lx" aria-label="Cerrar">✕</button><button class="p" id="lp" aria-label="Foto anterior">‹</button><img id="li" alt=""><button class="n" id="ln" aria-label="Foto siguiente">›</button></div>
+<script src="config.js"></script>
+<script>
+const CFG={title:"Boda de Ransel & Jhuliana",address:"Calle Gaspar Monge 150, San Borja, Lima, Perú",eventUTC:Date.UTC(2026,11,17,20,0,0),durationHours:5,video:"vK6pwU9yABw"};
+const PH=["img/foto-01.jpg", "img/foto-02.jpg", "img/foto-03.jpg", "img/foto-04.jpg", "img/foto-05.jpg", "img/foto-06.jpg", "img/foto-07.jpg", "img/foto-08.jpg", "img/foto-09.jpg"];
+const ALTS=["Ransel y Jhuliana frente a un espejo con letrero luminoso","Ransel arrodillado con el anillo frente a Jhuliana","Ransel y Jhuliana en una fotografía","Ransel y Jhuliana en una fotografía","Ransel y Jhuliana abrazados en blanco y negro","Jhuliana muestra su anillo junto a Ransel","Ransel y Jhuliana en una fotografía","Ransel y Jhuliana orando juntos"];
+const GIFTS=["Freidora de aire","Licuadora","Cafetera","Hervidor eléctrico","Tostadora","Microondas","Olla arrocera","Juego de ollas","Vajilla completa","Juego de cubiertos","Copas y vasos","Sartenes","Cuadros decorativos","Jarrones","Plantas ornamentales","Lámpara de pie","Difusor aromático","Velas aromáticas","Reloj de pared","Cojines decorativos","Organizadores para el hogar"];
+const $=id=>document.getElementById(id);
+$('gf').innerHTML=GIFTS.map((g,i)=>`<li class="rv"><em>${String(i+1).padStart(2,'0')}</em><span>${g}</span></li>`).join('');
+const q=encodeURIComponent(CFG.address);
+$('how').href=$('how2').href="https://www.google.com/maps/search/?api=1&query="+q;$('mp').src="https://maps.google.com/maps?q="+q+"&output=embed";
+const bg=$('bg'),nv=$('nv');bg.onclick=()=>{const o=nv.classList.toggle('open');bg.setAttribute('aria-expanded',o)};nv.onclick=e=>{if(e.target.tagName==='A')nv.classList.remove('open')};
+const hd=$('hd');const sc=()=>hd.classList.toggle('sc',scrollY>innerHeight*.6);addEventListener('scroll',sc,{passive:true});sc();
+const pad=n=>String(n).padStart(2,'0');
+function set(id,v){const e=$(id);if(e.textContent!==String(v)){e.textContent=v;e.classList.remove('flip');void e.offsetWidth;e.classList.add('flip')}}
+function tick(){const diff=CFG.eventUTC-Date.now();
+ if(diff>0){const t=Math.floor(diff/1000);set('d',Math.floor(t/86400));set('h',pad(Math.floor(t%86400/3600)));set('m',pad(Math.floor(t%3600/60)));set('s',pad(t%60));return}
+ clearInterval(iv);$('cdg').hidden=true;const m=$('cdm');m.hidden=false;m.textContent=Date.now()<CFG.eventUTC+CFG.durationHours*36e5?"¡Hoy es nuestro gran día!":"Gracias por acompañarnos en nuestro gran día."}
+const iv=setInterval(tick,1000);tick();
+$('ics').onclick=()=>{const f=t=>new Date(t).toISOString().replace(/[-:]|\.\d{3}/g,'');
+ const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Boda Ransel y Jhuliana//ES","BEGIN:VEVENT","UID:boda-2026-12-17@ransel-jhuliana","DTSTAMP:"+f(Date.now()),"DTSTART:"+f(CFG.eventUTC),"DTEND:"+f(CFG.eventUTC+CFG.durationHours*36e5),"SUMMARY:"+CFG.title,"LOCATION:"+CFG.address.replace(/,/g,'\\,'),"END:VEVENT","END:VCALENDAR"].join("\r\n");
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download="boda-ransel-jhuliana.ics";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1e3)};
+function show(el,msg){el.hidden=false;el.textContent=msg}
+
+const mm=$('mm');mm.oninput=()=>$('cc').textContent=mm.value.length+" / 500";
+const SBOK=()=>window.SB&&SB.url&&!SB.url.startsWith('PEGA');
+function dk(){try{let k=localStorage.getItem('dk');if(!k){k=(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)+Date.now().toString(16)+'0123456789abcdef').replace(/-/g,'');localStorage.setItem('dk',k)}return k}catch{return 'x'+Date.now().toString(16)+Math.random().toString(16).slice(2)+'0123456789abcdef'}}
+async function rpc(fn,body){if(!SBOK())throw new Error('config');const r=await fetch(SB.url+'/rest/v1/rpc/'+fn,{method:'POST',headers:{'Content-Type':'application/json',apikey:SB.key,Authorization:'Bearer '+SB.key},body:JSON.stringify(body)});if(!r.ok)throw new Error(await r.text())}
+$('rf').onsubmit=async e=>{e.preventDefault();const n=$('rn').value.trim(),a=document.querySelector('input[name=a]:checked'),b=e.target.querySelector('button[type=submit]');
+ $('rne').textContent=n?'':'Escribe tu nombre completo.';$('rae').textContent=a?'':'Elige una de las dos opciones.';if(!n||!a)return;
+ b.disabled=true;const t0=b.textContent;b.textContent='ENVIANDO…';$('rs').hidden=true;
+ try{await rpc('submit_rsvp',{p_name:n,p_status:a.value,p_key:dk()});show($('rs'),a.value==='attending'?'¡Qué alegría! Hemos recibido tu confirmación. Nos hace mucha ilusión compartir este día contigo.':'Gracias por avisarnos. Te enviamos todo nuestro cariño y agradecemos que nos hayas respondido.')}
+ catch(x){show($('rs'),'No pudimos registrar tu respuesta. Por favor, inténtalo nuevamente.')}
+ b.disabled=false;b.textContent=t0};
+async function loadMsgs(){if(!SBOK())return;try{const r=await fetch(SB.url+'/rest/v1/guest_messages?select=id,guest_name,message,created_at&moderation_status=eq.approved&order=created_at.desc&limit=100',{headers:{apikey:SB.key,Authorization:'Bearer '+SB.key}});if(!r.ok)return;const d=await r.json();const l=$('ml');l.textContent='';d.forEach(m=>{const c=document.createElement('div');c.className='mc';const b=document.createElement('b');b.textContent=m.guest_name;const p=document.createElement('p');p.textContent=m.message;c.append(b,p);l.appendChild(c)});$('me').hidden=d.length>0}catch{}}
+loadMsgs();
+$('mf').onsubmit=async e=>{e.preventDefault();const n=$('mn').value.trim(),m=mm.value.trim(),b=e.target.querySelector('button[type=submit]');
+ $('mne').textContent=n?'':'Escribe tu nombre.';$('mme').textContent=m?'':'Escribe tu mensaje.';if(!n||!m)return;
+ b.disabled=true;const t0=b.textContent;b.textContent='ENVIANDO…';$('ms').hidden=true;
+ try{await rpc('submit_message',{p_name:n,p_message:m,p_key:dk()});show($('ms'),'¡Gracias! Recibimos tu mensaje y aparecerá aquí cuando los novios lo aprueben.');$('mn').value='';mm.value='';$('cc').textContent='0 / 500'}
+ catch(x){show($('ms'),String(x.message).includes('limite')?'Enviaste varios mensajes seguidos. Inténtalo de nuevo más tarde.':'No pudimos guardar tu mensaje. Por favor, inténtalo nuevamente.')}
+ b.disabled=false;b.textContent=t0};
+// Galería (fotos 2..9, en el orden en que las enviaste; la 1 es la portada)
+const G=PH.slice(1);let cur=0;
+G.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Ampliar fotografía '+(i+1));const im=new Image();im.src=s;im.alt=ALTS[i]||"Ransel y Jhuliana";im.loading="lazy";b.appendChild(im);b.onclick=()=>op(i);$('gr').appendChild(b)});
+function paint(){$('li').src=G[cur];$('li').alt=ALTS[cur]||"Ransel y Jhuliana"}
+function op(i){cur=i;paint();$('lb').classList.add('on');$('lx').focus()}
+const cl=()=>$('lb').classList.remove('on'),go=d=>{cur=(cur+d+G.length)%G.length;paint()};
+$('lx').onclick=cl;$('lp').onclick=()=>go(-1);$('ln').onclick=()=>go(1);$('lb').onclick=e=>{if(e.target.id==='lb')cl()};
+document.addEventListener('keydown',e=>{if(!$('lb').classList.contains('on'))return;if(e.key==='Escape')cl();if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
+let x0=0;$('lb').addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});$('lb').addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>50)go(d<0?1:-1)});
+// Música: reproductor oficial de YouTube (iframe visible). Solo se declara "reproduciendo" si el reproductor lo confirma.
+let fr=null,playing=false,tm=null;
+const st=t=>$('st').textContent=t;
+const cmd=(f,a=[])=>fr&&fr.contentWindow.postMessage(JSON.stringify({event:'command',func:f,args:a}),'*');
+function startMusic(){
+ $('mu').classList.add('open');
+ if(fr){cmd('playVideo');return}
+ fr=document.createElement('iframe');fr.title="Rewrite The Stars (YouTube)";fr.allow="autoplay; encrypted-media";fr.referrerPolicy="strict-origin-when-cross-origin";
+ fr.src="https://www.youtube-nocookie.com/embed/"+CFG.video+"?enablejsapi=1&autoplay=1&playsinline=1&loop=1&playlist="+CFG.video+"&rel=0";
+ fr.onload=()=>{fr.contentWindow.postMessage(JSON.stringify({event:'listening',id:1,channel:'widget'}),'*');cmd('setVolume',[+$('vo').value])};
+ $('yw').appendChild(fr);st('Iniciando…');
+ clearTimeout(tm);tm=setTimeout(()=>{if(!playing)st('No se pudo confirmar la reproducción. Toca ▶ en el reproductor o ábrela en YouTube.')},7000)}
+addEventListener('message',e=>{if(!fr||e.source!==fr.contentWindow)return;let d;try{d=JSON.parse(e.data)}catch{return}
+ const s=d.event==='onStateChange'?d.info:(d.info&&typeof d.info.playerState==='number'?d.info.playerState:null);if(s===null)return;
+ if(s===1){playing=true;st('Reproduciendo');$('pp').textContent='Pausar'}else if(s===2){playing=false;st('En pausa');$('pp').textContent='Reanudar'}});
+$('pp').onclick=()=>{if(!fr){startMusic();return}if(playing){cmd('pauseVideo')}else{cmd('playVideo');if(!playing)st('Esperando confirmación…')}};
+$('vo').oninput=e=>cmd('setVolume',[+e.target.value]);
+$('cl').onclick=()=>{cmd('pauseVideo');if(fr){fr.remove();fr=null}playing=false;st('Sin iniciar');$('mu').classList.remove('open')};
+$('mp0').onclick=startMusic;
+$('open').onclick=()=>{startMusic();$('detalles').scrollIntoView({behavior:'smooth'})};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script></body></html>

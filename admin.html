@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Panel de los novios</title>
+<style>
+:root{--iv:#F6F2EA;--be:#D8CBB8;--ce:#D2E0E8;--az:#6F97AD;--no:#263544}
+*{box-sizing:border-box}body{margin:0;background:var(--iv);color:var(--no);font:16px/1.5 system-ui,sans-serif;padding:20px}
+h1{font:400 2rem Georgia,serif;margin:0 0 12px}main{max-width:960px;margin:auto}
+input,select,button{font:inherit;padding:11px 14px;border:1px solid var(--be);background:#fff;color:var(--no);border-radius:4px}
+button{background:var(--no);color:var(--iv);border-color:var(--no);cursor:pointer;min-height:44px}button.s{background:#fff;color:var(--no)}
+.box{background:#fff;border:1px solid var(--be);padding:20px;margin-bottom:16px}.row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.st{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.st div{background:var(--ce);padding:14px;text-align:center}.st b{display:block;font-size:1.9rem}
+table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--be);vertical-align:top}th{font-size:.75rem;letter-spacing:.1em}
+.w{overflow-x:auto}.er{color:#a3322b}[hidden]{display:none!important}
+</style></head><body><main>
+<h1>Panel de los novios</h1>
+<div class="box" id="lg"><form id="lf" class="row"><input type="email" id="em" placeholder="Correo" autocomplete="username" required><input type="password" id="pw" placeholder="Contraseña" autocomplete="current-password" required><button>Entrar</button></form><p class="er" id="er" role="alert"></p></div>
+<div id="app" hidden>
+<div class="row"><button class="s" id="t1">Confirmaciones</button><button class="s" id="t2">Mensajes</button><button class="s" id="ex">Exportar CSV</button><button class="s" id="rf">Actualizar</button><button class="s" id="lo">Salir</button></div>
+<div id="v1"><div class="st"><div><b id="n0">0</b>Respuestas</div><div><b id="n1">0</b>Asistirán</div><div><b id="n2">0</b>No asistirán</div></div>
+<div class="row"><input id="q" placeholder="Buscar por nombre"><select id="f"><option value="">Todas</option><option value="attending">Asistirán</option><option value="not_attending">No asistirán</option></select></div>
+<div class="box w"><table><thead><tr><th>NOMBRE</th><th>RESPUESTA</th><th>FECHA</th></tr></thead><tbody id="tb"></tbody></table><p id="e1" hidden>Aún no hay respuestas.</p></div></div>
+<div id="v2" hidden><div class="box w"><table><thead><tr><th>NOMBRE</th><th>MENSAJE</th><th>ESTADO</th><th></th></tr></thead><tbody id="mb"></tbody></table><p id="e2" hidden>Aún no hay mensajes.</p></div></div>
+</div></main>
+<script src="config.js"></script>
+<script>
+const $=id=>document.getElementById(id);let tok=sessionStorage.getItem('t')||'',R=[],M=[];
+const H=()=>({apikey:SB.key,Authorization:'Bearer '+tok,'Content-Type':'application/json'});
+const fd=s=>new Date(s).toLocaleString('es-PE',{timeZone:'America/Lima',dateStyle:'medium',timeStyle:'short'});
+const ST={attending:'Asistirá',not_attending:'No asistirá',pending:'Pendiente',approved:'Aprobado',hidden:'Oculto'};
+function td(t){const c=document.createElement('td');c.textContent=t;return c}
+$('lf').onsubmit=async e=>{e.preventDefault();$('er').textContent='';
+ if(!SB||SB.url.startsWith('PEGA')){$('er').textContent='Falta configurar config.js';return}
+ const r=await fetch(SB.url+'/auth/v1/token?grant_type=password',{method:'POST',headers:{apikey:SB.key,'Content-Type':'application/json'},body:JSON.stringify({email:$('em').value,password:$('pw').value})});
+ if(!r.ok){$('er').textContent='Correo o contraseña incorrectos.';return}tok=(await r.json()).access_token;sessionStorage.setItem('t',tok);$('pw').value='';load()};
+async function get(p){const r=await fetch(SB.url+'/rest/v1/'+p,{headers:H()});if(!r.ok)throw 0;return r.json()}
+async function load(){try{const a=await get('admins?select=user_id');if(!a.length){out('Esta cuenta no es administradora.');return}
+ R=await get('rsvps?select=*&order=created_at.desc');M=await get('guest_messages?select=*&order=created_at.desc');$('lg').hidden=true;$('app').hidden=false;draw()}catch{out('Sesión vencida. Entra de nuevo.')}}
+function out(m){tok='';sessionStorage.removeItem('t');$('app').hidden=true;$('lg').hidden=false;$('er').textContent=m}
+function draw(){const q=$('q').value.trim().toLowerCase(),f=$('f').value;
+ $('n0').textContent=R.length;$('n1').textContent=R.filter(r=>r.attendance_status==='attending').length;$('n2').textContent=R.filter(r=>r.attendance_status==='not_attending').length;
+ const L=R.filter(r=>(!f||r.attendance_status===f)&&(!q||r.guest_name.toLowerCase().includes(q)));
+ const tb=$('tb');tb.textContent='';L.forEach(r=>{const tr=document.createElement('tr');tr.append(td(r.guest_name),td(ST[r.attendance_status]),td(fd(r.updated_at||r.created_at)));tb.appendChild(tr)});$('e1').hidden=L.length>0;
+ const mb=$('mb');mb.textContent='';M.forEach(m=>{const tr=document.createElement('tr');tr.append(td(m.guest_name),td(m.message),td(ST[m.moderation_status]));const c=document.createElement('td');
+  [['approved','Aprobar'],['hidden','Ocultar']].forEach(([s,l])=>{if(m.moderation_status===s)return;const b=document.createElement('button');b.className='s';b.textContent=l;b.onclick=()=>mod(m.id,s);c.appendChild(b)});tr.appendChild(c);mb.appendChild(tr)});$('e2').hidden=M.length>0}
+async function mod(id,s){const r=await fetch(SB.url+'/rest/v1/guest_messages?id=eq.'+id,{method:'PATCH',headers:H(),body:JSON.stringify({moderation_status:s,moderated_at:new Date().toISOString()})});if(r.ok)load();else alert('No se pudo actualizar.')}
+const csvc=v=>{v=String(v??'');if(/^[=+\-@\t\r]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
+$('ex').onclick=()=>{const rows=[['Nombre','Respuesta','Fecha de respuesta (Lima)'],...R.map(r=>[r.guest_name,ST[r.attendance_status],fd(r.updated_at||r.created_at)])];
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+rows.map(r=>r.map(csvc).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'}));a.download='confirmaciones-boda.csv';a.click()};
+$('q').oninput=$('f').onchange=draw;$('rf').onclick=load;$('lo').onclick=()=>out('');
+$('t1').onclick=()=>{$('v1').hidden=false;$('v2').hidden=true};$('t2').onclick=()=>{$('v1').hidden=true;$('v2').hidden=false};
+if(tok)load();
+</script></body></html>
