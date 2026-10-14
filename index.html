@@ -6,8 +6,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--iv:#F6F2EA;--be:#D8CBB8;--ce:#D2E0E8;--az:#6F97AD;--no:#263544;--bg:var(--iv);--fg:var(--no);--mut:#5d6b78;--ln:rgba(216,203,184,.9);--card:#fff;--link:#3f6b82;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c2630;--fg:#F6F2EA;--mut:#b9c4cd;--ln:rgba(216,203,184,.25);--card:#263544;--link:#9cc1d6;--ce:#2a3a48}}
-:root[data-theme="dark"]{--bg:#1c2630;--fg:#F6F2EA;--mut:#b9c4cd;--ln:rgba(216,203,184,.25);--card:#263544;--link:#9cc1d6;--ce:#2a3a48}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:68px;height:100%}
 body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font:400 16px/1.7 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -79,38 +77,59 @@ fieldset{border:0;padding:0;margin:0;display:grid;gap:10px}
 .verse blockquote{margin:0;font:italic 300 clamp(2.1rem,7vw,3.8rem)/1.25 'Cormorant Garamond',serif;max-width:14em}
 .verse cite{display:block;margin-top:1.6rem;font:500 .8rem Inter;letter-spacing:.3em;font-style:normal;color:var(--link)}.verse .sig{margin-top:3rem;font:italic 1.35rem 'Cormorant Garamond',serif;color:var(--mut)}
 .verse .rv{transition-duration:2s}
-.mu{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--card);border:1px solid var(--be);box-shadow:0 8px 28px rgba(38,53,68,.2);max-width:calc(100vw - 24px)}
-.mu .pill{display:flex;align-items:center;gap:8px;border:0;background:none;color:var(--fg);font:500 .78rem Inter;padding:10px 16px;cursor:pointer;min-height:44px}
-.mu .pn{display:none;width:216px;padding:8px}.mu.open .pn{display:block}.mu.open .pill{display:none}
-.mu iframe{width:200px;height:200px;border:0;display:block;margin:auto;background:#000}
-.mu .st{font-size:.75rem;color:var(--mut);margin:8px 0 6px;text-align:center}.mu .ct{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap}
-.mu .ct button,.mu .ct a{font:500 .72rem Inter;border:1px solid var(--be);background:none;color:var(--fg);padding:0 10px;min-height:36px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
-.mu input[type=range]{width:100%;accent-color:var(--no)}
 footer{text-align:center;padding:40px 20px 90px;color:var(--mut);font-size:.8rem}
 .rv{opacity:0;transform:translateY(16px);transition:.9s ease}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}.rv{opacity:1;transform:none}}
 .mc{background:var(--card);border:1px solid var(--be);padding:18px 20px;margin-top:12px}.mc b{font:italic 400 1.3rem "Cormorant Garamond",serif}.mc p{margin:.4rem 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.dh{font-size:1.5rem;text-align:center;margin:2.2rem 0 .4rem}.sw figure b{display:block;font:500 .82rem Inter;color:var(--fg)}.sw figure code{display:block;font:400 .72rem Inter}.sw figure em{display:block;font:italic 1.05rem "Cormorant Garamond",serif;color:var(--link)}.sw figure{min-width:84px}
+.mu{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--be);box-shadow:0 8px 28px rgba(38,53,68,.2);padding:6px 16px 6px 6px;border-radius:999px;max-width:calc(100vw - 24px)}.mu button{width:44px;height:44px;border-radius:50%;border:0;background:var(--no);color:var(--iv);font-size:1rem;cursor:pointer}.mu button:hover{background:var(--az)}.mu .st{font-size:.72rem;color:var(--mut);max-width:130px;line-height:1.3}.mu input{width:70px;accent-color:var(--no)}.mu a{font-size:.7rem;color:var(--link)}
+[hidden]{display:none!important}
+body{background:linear-gradient(180deg,#cfdfe8 0,#e3ecef 22%,#F6F2EA 52%,#ece3d3 100%) fixed}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 30% at 20% 12%,rgba(255,255,255,.75),transparent 70%),radial-gradient(50% 25% at 85% 30%,rgba(255,255,255,.6),transparent 70%),radial-gradient(70% 30% at 30% 78%,rgba(216,203,184,.45),transparent 70%)}
+.band{background:rgba(210,224,232,.6);position:relative}.band::before{content:"";position:absolute;left:0;right:0;top:-14px;height:15px;background:radial-gradient(circle at 14px 0,transparent 13px,rgba(210,224,232,.6) 14px) 0 0/28px 15px repeat-x}
+.verse{background:linear-gradient(rgba(210,224,232,.6),rgba(216,203,184,.55))}
+.hi{margin:.2rem 0 0;font-size:.9rem;letter-spacing:.06em;opacity:.95}
+.hero .count{margin-top:22px;max-width:440px}.hero .count b,.hero .count span{color:#F6F2EA}.hero .count div{border-color:rgba(246,242,234,.4)}.hero .cdm{color:#F6F2EA}
+.arch{max-width:520px;margin:0 auto 2.4rem;padding:56px 30px 36px;text-align:center;border:1px solid var(--be);outline:1px solid rgba(255,255,255,.85);outline-offset:-9px;border-radius:260px 260px 18px 18px;background:rgba(255,255,255,.4)}.arch p{font:400 clamp(1.8rem,6vw,2.4rem) 'Cormorant Garamond',serif;margin:0 0 .6rem}.arch span{font:300 1.15rem/1.6 'Cormorant Garamond',serif;color:var(--mut)}
+.tl{position:relative;max-width:640px;margin:0 auto;padding-left:34px}.tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:1px;background:var(--az)}
+.ti{position:relative;margin-bottom:2.2rem}.ti::before{content:"";position:absolute;left:-32px;top:.5rem;width:11px;height:11px;border-radius:50%;background:var(--iv);border:1px solid var(--az)}
+.ti small{display:block;letter-spacing:.26em;font-size:.72rem;color:var(--link)}.ti h3{font-size:1.9rem;margin:.1rem 0 .5rem}.ti p{margin:0 0 .8rem}
+.grid{grid-template-columns:repeat(2,1fr)}@media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}@media(min-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
+.grid button,.grid button:nth-child(5n+1){grid-column:auto;aspect-ratio:1/1}
+.ind{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}@media(max-width:700px){.ind{grid-template-columns:1fr}}
+.ic2{background:rgba(255,255,255,.62);border:1px solid var(--be);padding:28px 22px;text-align:center}.ic2.adult{grid-column:1/-1;background:var(--ce)}.ic2 em{font:italic 300 1.5rem 'Cormorant Garamond',serif;color:var(--az)}.ic2 h3{font-size:1.6rem;margin:.1rem 0 .6rem}
+.pv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}@media(min-width:700px){.pv{grid-template-columns:repeat(5,1fr)}}.pv div{position:relative;aspect-ratio:1;overflow:hidden}.pv img{width:100%;height:100%;object-fit:cover}.pv button{position:absolute;top:4px;right:4px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(38,53,68,.85);color:#fff;cursor:pointer}
+.gp{margin-top:2rem;opacity:0;transform:translateY(14px);transition:opacity .8s,transform .8s}.gp.open{opacity:1;transform:none}
+.nb{position:fixed;left:50%;transform:translateX(-50%);top:calc(72px + env(safe-area-inset-top,0px));z-index:45;background:var(--no);color:var(--iv);font-size:.8rem;padding:9px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(38,53,68,.25);animation:fi .6s;max-width:calc(100vw - 24px);text-align:center}
 </style></head><body>
 <a class="skip" href="#detalles">Saltar al contenido</a>
 <header id="hd"><div class="bar"><a class="logo" href="#inicio">R & J</a><button class="burger" id="bg" aria-label="Abrir menú" aria-expanded="false" aria-controls="nv">☰</button>
-<nav id="nv" aria-label="Principal"><ul><li><a href="#detalles">Detalles</a></li><li><a href="#vestimenta">Vestimenta</a></li><li><a href="#ubicacion">Ubicación</a></li><li><a href="#rsvp">Confirmar</a></li><li><a href="#galeria">Galería</a></li><li><a href="#regalos">Regalos</a></li><li><a href="#mensajes">Mensajes</a></li></ul></nav></div></header>
+<nav id="nv" aria-label="Principal"><ul><li><a href="#historia">Historia</a></li><li><a href="#detalles">Detalles</a></li><li><a href="#vestimenta">Vestimenta</a></li><li><a href="#rsvp">Confirmar</a></li><li><a href="#galeria">Galería</a></li><li><a href="#recuerdos">Recuerdos</a></li><li><a href="#regalos">Regalos</a></li><li><a href="#mensajes">Mensajes</a></li></ul></nav></div></header>
 <main>
 <section class="hero" id="inicio" style="max-width:none;padding:0"><img src="img/foto-01.jpg" alt="Ransel y Jhuliana tomados de la mano al atardecer" fetchpriority="high">
-<div class="hc"><div class="tag">NOS CASAMOS</div><h1 class="names">Ransel <i>&</i> Jhuliana</h1><div class="date">17 · 12 · 2026</div>
+<div class="hc"><div class="tag">NOS CASAMOS</div><h1 class="names">Ransel <i>&</i> Jhuliana</h1><div class="date">17 · 12 · 2026</div><p class="hi">Jueves 17 de diciembre de 2026 · 3:00 p. m.<br>Calle Gaspar Monge 150, San Borja, Lima, Perú</p>
 <p class="quote">Hay caminos que se vuelven hogar cuando se recorren juntos.</p>
-<div class="row"><button class="btn" id="open">ABRIR NUESTRA INVITACIÓN</button><a class="btn ln" href="#rsvp">CONFIRMAR ASISTENCIA</a></div></div></section>
+<div class="row"><button class="btn" id="open">ABRIR NUESTRA INVITACIÓN</button><a class="btn ln" href="#rsvp">CONFIRMAR ASISTENCIA</a></div><div class="count" id="cdg"><div><b id="d">--</b><span>DÍAS</span></div><div><b id="h">--</b><span>HORAS</span></div><div><b id="m">--</b><span>MINUTOS</span></div><div><b id="s">--</b><span>SEGUNDOS</span></div></div><p class="cdm" id="cdm" hidden></p></div></section>
 
-<section id="cuenta" class="rv" style="padding-bottom:40px"><div class="count" id="cdg"><div><b id="d">--</b><span>DÍAS</span></div><div><b id="h">--</b><span>HORAS</span></div><div><b id="m">--</b><span>MINUTOS</span></div><div><b id="s">--</b><span>SEGUNDOS</span></div></div><p class="cdm" id="cdm" hidden></p></section>
 
-<section id="historia" class="rv" style="padding-top:40px"><div class="orn"></div><h2>Con alegría en el corazón</h2><p class="story">Después de caminar juntos, hemos decidido dar el paso más bonito. Queremos que estés con nosotros el día en que empezamos esta nueva etapa.</p></section>
+<section id="historia" class="rv"><p class="sub" style="letter-spacing:.3em;font-size:.75rem;margin-bottom:.4rem">NUESTRA HISTORIA</p><h2>Una historia de amor</h2>
+<div class="arch"><p>Ransel y Jhuliana</p><span>Había una vez un joven llamado Ransel y una joven llamada Jhuliana, que sin saberlo estaban a punto de comenzar una historia muy especial.</span></div>
+<div class="tl"><div class="ti rv"><small>17 · 06 · 2024</small><h3>El primer encuentro</h3><p>El 17 de junio de 2024, sus caminos se cruzaron por primera vez. Poco a poco comenzaron a conocerse, a compartir momentos y a descubrir que había algo especial entre ellos.</p></div><div class="ti rv"><small>09 · 09 · 2024</small><h3>La primera cita</h3><p>El 9 de septiembre de 2024 tuvieron su primera cita en Starbucks de Plaza San Miguel. Allí compartieron conversaciones, risas y momentos que poco a poco fueron haciendo crecer su historia.</p></div><div class="ti rv"><small>13 · 09 · 2024</small><h3>El comienzo de nuestra historia</h3><p>Y fue precisamente allí, el 13 de septiembre de 2024, donde comenzaron oficialmente su historia de amor.</p><p>Pasó el tiempo y aquel lugar siguió formando parte de sus recuerdos más bonitos.</p></div><div class="ti rv"><small>17 · 08 · 2025</small><h3>La propuesta</h3><p>Por eso, cuando llegó el momento de hacerle la pregunta más importante, Ransel quiso volver al mismo lugar donde todo había comenzado.</p><p>El 17 de agosto de 2025, después de la iglesia, regresaron a aquel Starbucks. Esta vez, Ransel llevaba consigo un anillo y una pregunta que guardaba en el corazón.</p></div><div class="ti rv"><small>COSTA VERDE</small><h3>Ella dijo que sí</h3><p>Después fueron juntos hacia la Costa Verde, donde Ransel le pidió a Jhuliana que compartiera con él el resto del camino.</p><p>Y ella dijo que sí.</p><p>Así, el lugar donde un día comenzó su historia volvió a ser testigo de otro de sus momentos más importantes.</p></div></div>
+<p class="story rv" style="margin-top:2rem">Y desde aquel primer encuentro, <b style="font-weight:500">Ransel y Jhuliana siguen escribiendo, juntos, su historia de amor.</b></p></section>
 
 <div class="band" id="detalles"><div class="in2 rv"><h2>Detalles de la boda</h2><div class="facts"><div class="fact"><small>FECHA</small><h3>Jueves 17 de diciembre de 2026</h3></div><div class="fact"><small>HORA</small><h3>3:00 p. m.</h3></div><div class="fact"><small>LUGAR</small><h3>San Borja, Lima</h3></div></div>
 <div class="row"><a class="btn" id="how" target="_blank" rel="noopener">CÓMO LLEGAR</a><button class="btn ln" id="ics">AGREGAR A MI CALENDARIO</button></div></div></div>
 
-<section id="vestimenta" class="rv"><h2>Un detalle para nuestro gran día</h2><p class="sub">Queremos compartir este momento tan especial contigo. Te invitamos a elegir tu vestimenta dentro de nuestra paleta de colores para acompañarnos en esta celebración.</p>
-<div class="sw"><figure><span style="background:#fff"></span>Blanco</figure><figure><span style="background:#171717"></span>Negro</figure><figure><span style="background:#1B2A4A"></span>Azul marino</figure><figure><span style="background:#243B64"></span>Azul clásico</figure><figure><span style="background:#A9BEDC"></span>Azul claro</figure></div><p class="hint">Los tonos de azul pueden variar.</p>
+<section id="vestimenta" class="rv"><h2>Un detalle para nuestro gran día</h2><p class="sub">Para nuestro día especial hemos elegido una paleta de colores que nos ayudará a crear una celebración armoniosa y elegante. Te invitamos a elegir tu atuendo entre los tonos sugeridos.</p>
+<h3 class="dh">Colores sugeridos para nuestros invitados</h3>
+<div class="sw" role="list"><figure role="listitem"><span style="background:#6F97AD"></span><b>Azul suave</b><code>#6F97AD</code></figure><figure role="listitem"><span style="background:#89958B"></span><b>Verde salvia</b><code>#89958B</code></figure><figure role="listitem"><span style="background:#78816A"></span><b>Verde oliva suave</b><code>#78816A</code></figure><figure role="listitem"><span style="background:#A7A9AC"></span><b>Gris elegante</b><code>#A7A9AC</code></figure><figure role="listitem"><span style="background:#C7A9A0"></span><b>Rosa empolvado</b><code>#C7A9A0</code></figure></div>
+<h3 class="dh">Colores reservados para los protagonistas</h3>
+<div class="sw" role="list"><figure role="listitem"><span style="background:#D8CBB8"></span><b>Beige natural</b><code>#D8CBB8</code><em>Novio</em></figure><figure role="listitem"><span style="background:#263544"></span><b>Azul noche</b><code>#263544</code><em>Novia</em></figure><figure role="listitem"><span style="background:#FFFFFF"></span><b>Blanco</b><code>#FFFFFF</code><em>Pajes</em></figure></div>
+<p class="hint">Te pedimos evitar estos tres colores como tono predominante de tu atuendo.</p><p class="note b" style="text-align:left">El azul suave sí forma parte de los tonos sugeridos para invitados. El azul noche está reservado exclusivamente para la novia.</p>
 <p class="note">Gracias por respetar nuestra paleta de colores y ayudarnos a mantener la armonía de este día tan especial.</p>
 <p class="note b">Esta celebración está organizada sin bebés. Agradecemos mucho tu comprensión y cariño.</p></section>
+
+<section id="indicaciones" class="rv"><h2>Indicaciones para nuestro gran día</h2><p class="sub">Nos alegra compartir este día tan especial contigo. Para que todos disfrutemos de una celebración inolvidable, te pedimos tener en cuenta las siguientes indicaciones:</p><div class="ind"><div class="ic2 adult rv"><em>I</em><h3>Celebración solo para adultos</h3><p style="margin:0">Amamos a los más pequeños, pero en esta ocasión hemos decidido celebrar nuestra boda en un ambiente exclusivo para adultos. Agradecemos mucho su comprensión.</p></div><div class="ic2 rv"><em>II</em><h3>Puntualidad</h3><p style="margin:0">Te invitamos a llegar con anticipación para disfrutar de cada momento desde el inicio.</p></div><div class="ic2 rv"><em>III</em><h3>Confirmación de asistencia</h3><p style="margin:0">Agradecemos confirmar tu asistencia dentro del plazo indicado para ayudarnos con la organización.</p></div><div class="ic2 rv"><em>IV</em><h3>Disfruta y celebra con nosotros</h3><p style="margin:0">Tu presencia es muy importante. ¡Prepárate para compartir una noche llena de amor, alegría y recuerdos inolvidables!</p></div></div></section>
 
 <div class="band" id="ubicacion"><div class="in2 rv"><h2>Ubicación</h2><p class="sub">Te esperamos aquí. Toca la dirección para abrirla en Google Maps.</p>
 <a class="loc" id="how2" target="_blank" rel="noopener" aria-label="Abrir en Google Maps: Calle Gaspar Monge 150, San Borja, Lima, Perú"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.800-7 11-7 11z"/><circle cx="12" cy="10" r="2.500"/></svg><h3>Calle Gaspar Monge 150</h3><p style="margin:0">San Borja, Lima, Perú</p><p class="hint" style="margin:.8rem 0 0">CÓMO LLEGAR →</p></a>
@@ -123,19 +142,27 @@ footer{text-align:center;padding:40px 20px 90px;color:var(--mut);font-size:.8rem
 
 <section id="galeria" class="rv"><h2>Nuestra historia en imágenes</h2><p class="sub">Pequeños momentos, grandes recuerdos y una historia que nos ha traído hasta aquí.</p><div class="grid" id="gr"></div></section>
 
-<div class="band" id="regalos"><div class="in2"><div class="intro rv"><h2>Lista de regalos</h2>
+<section id="recuerdos" class="rv"><h2>Comparte tus recuerdos</h2><p class="sub">Queremos recordar cada sonrisa, cada abrazo y cada instante de este día tan especial. Comparte las fotografías que tomes durante nuestra boda y ayúdanos a guardar recuerdos que atesoraremos para siempre.</p>
+<div class="row"><button class="btn" id="pb">SUBIR MIS FOTOS</button></div><input type="file" id="pf" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple hidden>
+<p class="err" id="pe" role="alert" style="text-align:center"></p>
+<div id="pw" hidden><div class="pv" id="pv"></div><div class="row"><button class="btn" id="pu">CONFIRMAR Y SUBIR</button><button class="btn ln" id="px">CANCELAR</button></div></div>
+<div class="status" id="ps" role="status" hidden style="margin-top:14px"></div>
+<p class="hint" style="margin-top:1rem">Hasta 10 fotos por envío · JPG, PNG o WebP · Se publicarán cuando los novios las aprueben.</p>
+<div class="grid" id="sg" style="margin-top:22px"></div></section>
+
+<div class="band" id="regalos"><div class="in2 rv" style="text-align:center"><h2>Lista de regalos</h2><button class="btn" id="gb" aria-expanded="false" aria-controls="gp">LISTA DE REGALOS</button>
+<div id="gp" class="gp" hidden><div class="intro">
 <p>Estamos por comenzar una de las etapas más bonitas de nuestras vidas, llena de nuevos propósitos, ilusiones y sueños compartidos.</p>
 <p>Para nosotros, contar con su compañía en nuestro matrimonio será una alegría inmensa y un recuerdo que atesoraremos siempre.</p>
 <p>Si desean tener un detalle con nosotros, hemos preparado una lista de regalos con mucho cariño, pensando en este nuevo capítulo que construiremos juntos.</p>
-<p>Agradecemos de corazón cada muestra de afecto y generosidad. Lo recibiremos con muchísima ilusión y gratitud.</p></div>
-<ul class="gifts" id="gf"></ul></div></div>
+<p>Agradecemos de corazón cada muestra de afecto y generosidad. Lo recibiremos con muchísima ilusión y gratitud.</p></div><ul class="gifts" id="gf"></ul><div class="row" style="margin-top:2rem"><button class="btn ln" id="gc">CERRAR LISTA</button></div></div></div></div>
 
 <section id="aportes" class="rv"><h2>Aportes voluntarios</h2>
 <p class="sub" style="margin-bottom:1rem">Si desean obsequiarnos algo para esta nueva aventura, hemos habilitado este código QR para quienes quieran brindarnos un aporte voluntario.</p>
 <p class="sub" style="margin-bottom:0">Gracias por ser parte de nuestros sueños y acompañarnos en el inicio de esta hermosa historia juntos.</p>
 <div class="qr"><h3>YAPE / PLIN</h3><img src="img/qr-yape.png" alt="Código QR de Yape/Plin para el aporte voluntario" width="480" height="480"><p style="margin:0;font-size:.9rem">Escanea el código QR para realizar tu aporte voluntario</p></div></section>
 
-<section id="mensajes" class="rv"><h2>Déjanos unas palabras</h2><p class="sub">Queremos guardar los buenos deseos, las palabras bonitas y los recuerdos que nos acompañarán en esta nueva etapa.</p>
+<section id="mensajes" class="rv"><h2>Déjanos un mensaje</h2><p class="sub">Nos hará mucha ilusión leer tus buenos deseos y guardar tus palabras como parte de los recuerdos de este día tan especial.</p>
 <form id="mf" novalidate><div><label for="mn">Nombre</label><input type="text" id="mn" maxlength="80"><p class="err" id="mne" role="alert"></p></div>
 <div><label for="mm">Mensaje para los novios</label><textarea id="mm" maxlength="500"></textarea><p class="hint" id="cc">0 / 500</p><p class="err" id="mme" role="alert"></p></div>
 <button class="btn" type="submit">DEJAR MI MENSAJE</button><div class="status" id="ms" role="status" hidden></div></form>
@@ -144,10 +171,9 @@ footer{text-align:center;padding:40px 20px 90px;color:var(--mut);font-size:.8rem
 <section class="verse"><div class="rv"><blockquote>Las muchas aguas no podrán apagar el amor</blockquote><cite>CANTARES 8:7</cite><p class="sig">Con amor, Ransel & Jhuliana</p></div></section>
 <footer>17 · 12 · 2026 · San Borja, Lima</footer>
 
-<div class="mu" id="mu"><button class="pill" id="mp0" aria-label="Abrir reproductor de música">♪ Música</button>
-<div class="pn" role="group" aria-label="Reproductor de música"><div id="yw"></div><p class="st" id="st" role="status">Sin iniciar</p>
-<div class="ct"><button id="pp">Pausar</button><a href="https://youtu.be/vK6pwU9yABw" target="_blank" rel="noopener">Abrir en YouTube</a><button id="cl" aria-label="Cerrar reproductor">Cerrar</button></div>
-<label class="hint" style="display:block;margin-top:8px">Volumen<input type="range" id="vo" min="0" max="100" value="60"></label></div></div>
+<div class="nb" id="nb" hidden role="status">♪ Toca la pantalla para activar la música</div>
+<audio id="au" src="audio/rewrite-the-stars.mp3" preload="auto" loop></audio>
+<div class="mu" role="group" aria-label="Música de fondo"><button id="pp" aria-label="Reproducir música">▶</button><span class="st" id="st" role="status">Música</span><input type="range" id="vo" min="0" max="100" value="60" aria-label="Volumen"><a id="yt" href="https://youtu.be/vK6pwU9yABw" target="_blank" rel="noopener" hidden>YouTube</a></div>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galería ampliada"><button class="x" id="lx" aria-label="Cerrar">✕</button><button class="p" id="lp" aria-label="Foto anterior">‹</button><img id="li" alt=""><button class="n" id="ln" aria-label="Foto siguiente">›</button></div>
 <script src="config.js"></script>
@@ -192,34 +218,55 @@ $('mf').onsubmit=async e=>{e.preventDefault();const n=$('mn').value.trim(),m=mm.
  catch(x){show($('ms'),String(x.message).includes('limite')?'Enviaste varios mensajes seguidos. Inténtalo de nuevo más tarde.':'No pudimos guardar tu mensaje. Por favor, inténtalo nuevamente.')}
  b.disabled=false;b.textContent=t0};
 // Galería (fotos 2..9, en el orden en que las enviaste; la 1 es la portada)
-const G=PH.slice(1);let cur=0;
-G.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Ampliar fotografía '+(i+1));const im=new Image();im.src=s;im.alt=ALTS[i]||"Ransel y Jhuliana";im.loading="lazy";b.appendChild(im);b.onclick=()=>op(i);$('gr').appendChild(b)});
-function paint(){$('li').src=G[cur];$('li').alt=ALTS[cur]||"Ransel y Jhuliana"}
+let G=PH.slice(1),GA=ALTS;const GAL=G,POS=["50% 50%","45% 40%","50% 35%","50% 40%","50% 45%","45% 55%","50% 35%","52% 50%"];let cur=0;
+G.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Ampliar fotografía '+(i+1));const im=new Image();im.src=s;im.alt=ALTS[i]||"Ransel y Jhuliana";im.loading="lazy";im.style.objectPosition=POS[i]||"50% 35%";b.appendChild(im);b.onclick=()=>{G=GAL;GA=ALTS;op(i)};$('gr').appendChild(b)});
+function paint(){$('li').src=G[cur];$('li').alt=GA[cur]||"Ransel y Jhuliana"}
 function op(i){cur=i;paint();$('lb').classList.add('on');$('lx').focus()}
 const cl=()=>$('lb').classList.remove('on'),go=d=>{cur=(cur+d+G.length)%G.length;paint()};
 $('lx').onclick=cl;$('lp').onclick=()=>go(-1);$('ln').onclick=()=>go(1);$('lb').onclick=e=>{if(e.target.id==='lb')cl()};
 document.addEventListener('keydown',e=>{if(!$('lb').classList.contains('on'))return;if(e.key==='Escape')cl();if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
 let x0=0;$('lb').addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});$('lb').addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>50)go(d<0?1:-1)});
-// Música: reproductor oficial de YouTube (iframe visible). Solo se declara "reproduciendo" si el reproductor lo confirma.
-let fr=null,playing=false,tm=null;
+// Música: un solo <audio> persistente. Solo se muestra "Reproduciendo" cuando el navegador lo confirma.
+const au=$('au');au.volume=.6;let manual=false;
 const st=t=>$('st').textContent=t;
-const cmd=(f,a=[])=>fr&&fr.contentWindow.postMessage(JSON.stringify({event:'command',func:f,args:a}),'*');
-function startMusic(){
- $('mu').classList.add('open');
- if(fr){cmd('playVideo');return}
- fr=document.createElement('iframe');fr.title="Rewrite The Stars (YouTube)";fr.allow="autoplay; encrypted-media";fr.referrerPolicy="strict-origin-when-cross-origin";
- fr.src="https://www.youtube-nocookie.com/embed/"+CFG.video+"?enablejsapi=1&autoplay=1&playsinline=1&loop=1&playlist="+CFG.video+"&rel=0";
- fr.onload=()=>{fr.contentWindow.postMessage(JSON.stringify({event:'listening',id:1,channel:'widget'}),'*');cmd('setVolume',[+$('vo').value])};
- $('yw').appendChild(fr);st('Iniciando…');
- clearTimeout(tm);tm=setTimeout(()=>{if(!playing)st('No se pudo confirmar la reproducción. Toca ▶ en el reproductor o ábrela en YouTube.')},7000)}
-addEventListener('message',e=>{if(!fr||e.source!==fr.contentWindow)return;let d;try{d=JSON.parse(e.data)}catch{return}
- const s=d.event==='onStateChange'?d.info:(d.info&&typeof d.info.playerState==='number'?d.info.playerState:null);if(s===null)return;
- if(s===1){playing=true;st('Reproduciendo');$('pp').textContent='Pausar'}else if(s===2){playing=false;st('En pausa');$('pp').textContent='Reanudar'}});
-$('pp').onclick=()=>{if(!fr){startMusic();return}if(playing){cmd('pauseVideo')}else{cmd('playVideo');if(!playing)st('Esperando confirmación…')}};
-$('vo').oninput=e=>cmd('setVolume',[+e.target.value]);
-$('cl').onclick=()=>{cmd('pauseVideo');if(fr){fr.remove();fr=null}playing=false;st('Sin iniciar');$('mu').classList.remove('open')};
-$('mp0').onclick=startMusic;
-$('open').onclick=()=>{startMusic();$('detalles').scrollIntoView({behavior:'smooth'})};
+au.addEventListener('playing',()=>{st('Reproduciendo');$('pp').textContent='❚❚';$('pp').setAttribute('aria-label','Pausar música');$('yt').hidden=true});
+au.addEventListener('pause',()=>{if(!au.ended){st('En pausa');$('pp').textContent='▶';$('pp').setAttribute('aria-label','Reanudar música')}});
+au.addEventListener('error',()=>{st('No se pudo cargar el audio');$('yt').hidden=false});
+const nb=$('nb');
+function tryPlay(){const p=au.play();if(p)p.catch(()=>{st('Toca la pantalla para activar la música');nb.hidden=false;$('yt').hidden=false})}
+tryPlay();
+au.addEventListener('canplaythrough',()=>{if(au.paused&&!manual)tryPlay()},{once:true});
+addEventListener('pageshow',()=>{if(au.paused&&!manual)tryPlay()});
+const EVS=['pointerdown','touchend','click','keydown'];
+const unlock=e=>{if(e.target.closest&&e.target.closest('.mu'))return;if(!manual&&au.paused)tryPlay()};
+EVS.forEach(ev=>addEventListener(ev,unlock,{capture:true,passive:true}));
+au.addEventListener('playing',()=>{nb.hidden=true;EVS.forEach(ev=>removeEventListener(ev,unlock,{capture:true}))});
+$('pp').onclick=e=>{e.stopPropagation();manual=true;au.paused?tryPlay():au.pause()};
+$('vo').oninput=e=>au.volume=e.target.value/100;
+$('open').onclick=()=>{if(au.paused&&!manual)tryPlay();$('detalles').scrollIntoView({behavior:'smooth'})};
+
+const gp=$('gp'),gb=$('gb');
+gb.onclick=()=>{gp.hidden=false;gb.hidden=true;gb.setAttribute('aria-expanded','true');requestAnimationFrame(()=>gp.classList.add('open'));gp.scrollIntoView({behavior:'smooth',block:'start'})};
+$('gc').onclick=()=>{gp.classList.remove('open');gp.hidden=true;gb.hidden=false;gb.setAttribute('aria-expanded','false');$('regalos').scrollIntoView({behavior:'smooth'})};
+const MAXF=10,MAXB=8*1024*1024;let sel=[];
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2).padEnd(16,'0')+Date.now().toString(16);
+async function sniff(f){const b=new Uint8Array(await f.slice(0,12).arrayBuffer());const h=[...b].map(x=>x.toString(16).padStart(2,'0')).join('');if(h.startsWith('ffd8ff'))return['image/jpeg','jpg'];if(h.startsWith('89504e47'))return['image/png','png'];if(h.startsWith('52494646')&&h.slice(16,24)==='57454250')return['image/webp','webp'];return null}
+async function shrink(f,t){try{const bm=await createImageBitmap(f,{imageOrientation:'from-image'});const sc=Math.min(1,1600/Math.max(bm.width,bm.height));const c=document.createElement('canvas');c.width=Math.round(bm.width*sc);c.height=Math.round(bm.height*sc);c.getContext('2d').drawImage(bm,0,0,c.width,c.height);const b=await new Promise(r=>c.toBlob(r,'image/jpeg',.85));if(b&&(sc<1||b.size<f.size))return[b,'image/jpeg','jpg']}catch{}return[f,t[0],t[1]]}
+function renderSel(){const pv=$('pv');pv.textContent='';sel.forEach((s,i)=>{const d=document.createElement('div'),im=new Image();im.src=s.url;im.alt='Vista previa '+(i+1);const x=document.createElement('button');x.textContent='✕';x.setAttribute('aria-label','Quitar foto '+(i+1));x.onclick=()=>{URL.revokeObjectURL(s.url);sel.splice(i,1);renderSel()};d.append(im,x);pv.appendChild(d)});$('pw').hidden=!sel.length}
+$('pb').onclick=()=>{$('ps').hidden=true;$('pf').click()};
+$('pf').onchange=async e=>{const msgs=[];for(const f of e.target.files){if(sel.length>=MAXF){msgs.push('Máximo '+MAXF+' fotos por envío.');break}if(f.size>MAXB){msgs.push(f.name+': pesa más de 8 MB.');continue}const t=await sniff(f);if(!t){msgs.push(f.name+': formato no admitido (usa JPG, PNG o WebP).');continue}sel.push({f,t,url:URL.createObjectURL(f)})}e.target.value='';$('pe').textContent=msgs.join(' ');renderSel()};
+$('px').onclick=()=>{sel.forEach(s=>URL.revokeObjectURL(s.url));sel=[];renderSel();$('pe').textContent=''};
+$('pu').onclick=async()=>{const b=$('pu');b.disabled=true;$('pe').textContent='';let ok=0;const rest=[];const ps=$('ps');
+ for(let i=0;i<sel.length;i++){const s=sel[i];show(ps,'Subiendo '+(i+1)+' de '+sel.length+'…');
+  try{if(!SBOK())throw 0;const [blob,mime,ext]=await shrink(s.f,s.t);const path='pending/'+uid()+'.'+ext;
+   const r=await fetch(SB.url+'/storage/v1/object/guest-photos/'+path,{method:'POST',headers:{apikey:SB.key,Authorization:'Bearer '+SB.key,'Content-Type':mime,'x-upsert':'false'},body:blob});if(!r.ok)throw 0;
+   await rpc('register_photo',{p_path:path,p_mime:mime,p_size:blob.size,p_key:dk()});ok++;URL.revokeObjectURL(s.url)}catch{rest.push(s)}}
+ sel=rest;renderSel();b.disabled=false;
+ show(ps,rest.length?(ok?ok+' foto(s) se subieron, pero '+rest.length+' fallaron. Puedes intentarlo de nuevo.':'No pudimos subir tus fotos. Por favor, inténtalo nuevamente.'):'¡Gracias! Tus '+ok+' foto(s) se subieron y se publicarán cuando los novios las aprueben.')};
+async function loadShared(){if(!SBOK())return;try{const H={apikey:SB.key,Authorization:'Bearer '+SB.key};const r=await fetch(SB.url+'/rest/v1/guest_photos?select=id,storage_path&status=eq.approved&order=created_at.desc&limit=40',{headers:H});if(!r.ok)return;const d=await r.json();
+ const us=(await Promise.all(d.map(async p=>{try{const x=await fetch(SB.url+'/storage/v1/object/authenticated/guest-photos/'+p.storage_path,{headers:H});return x.ok?URL.createObjectURL(await x.blob()):null}catch{return null}}))).filter(Boolean);
+ const g=$('sg');g.textContent='';const al=us.map((_,i)=>'Foto compartida por un invitado '+(i+1));us.forEach((u,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Ampliar foto compartida '+(i+1));const im=new Image();im.src=u;im.alt=al[i];im.loading='lazy';b.appendChild(im);b.onclick=()=>{G=us;GA=al;op(i)};g.appendChild(b)})}catch{}}
+loadShared();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 </script></body></html>

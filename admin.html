@@ -3,49 +3,65 @@
 <style>
 :root{--iv:#F6F2EA;--be:#D8CBB8;--ce:#D2E0E8;--az:#6F97AD;--no:#263544}
 *{box-sizing:border-box}body{margin:0;background:var(--iv);color:var(--no);font:16px/1.5 system-ui,sans-serif;padding:20px}
-h1{font:400 2rem Georgia,serif;margin:0 0 12px}main{max-width:960px;margin:auto}
-input,select,button{font:inherit;padding:11px 14px;border:1px solid var(--be);background:#fff;color:var(--no);border-radius:4px}
-button{background:var(--no);color:var(--iv);border-color:var(--no);cursor:pointer;min-height:44px}button.s{background:#fff;color:var(--no)}
-.box{background:#fff;border:1px solid var(--be);padding:20px;margin-bottom:16px}.row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+h1{font:400 2rem Georgia,serif;margin:0 0 12px}main{max-width:1000px;margin:auto}
+input,select,button{font:inherit;padding:10px 14px;border:1px solid var(--be);background:#fff;color:var(--no);border-radius:4px}
+button{background:var(--no);color:var(--iv);border-color:var(--no);cursor:pointer;min-height:44px}button.s{background:#fff;color:var(--no)}button.d{background:#a3322b;border-color:#a3322b}button.on{background:var(--az);border-color:var(--az);color:#fff}
+.box{background:#fff;border:1px solid var(--be);padding:18px;margin-bottom:16px}.row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
 .st{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.st div{background:var(--ce);padding:14px;text-align:center}.st b{display:block;font-size:1.9rem}
 table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--be);vertical-align:top}th{font-size:.75rem;letter-spacing:.1em}
 .w{overflow-x:auto}.er{color:#a3322b}[hidden]{display:none!important}
+.ph{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}.ph>div{border:1px solid var(--be);padding:8px;background:#fff}.ph img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--ce);cursor:zoom-in}.ph .row{margin:8px 0 0}.ph button{min-height:38px;padding:6px 10px;font-size:.85rem}
 </style></head><body><main>
 <h1>Panel de los novios</h1>
 <div class="box" id="lg"><form id="lf" class="row"><input type="email" id="em" placeholder="Correo" autocomplete="username" required><input type="password" id="pw" placeholder="Contraseña" autocomplete="current-password" required><button>Entrar</button></form><p class="er" id="er" role="alert"></p></div>
 <div id="app" hidden>
-<div class="row"><button class="s" id="t1">Confirmaciones</button><button class="s" id="t2">Mensajes</button><button class="s" id="ex">Exportar CSV</button><button class="s" id="rf">Actualizar</button><button class="s" id="lo">Salir</button></div>
+<div class="row"><button class="s" id="t1">Confirmaciones</button><button class="s" id="t2">Fotos</button><button class="s" id="t3">Mensajes</button><button class="s" id="rf">Actualizar</button><button class="s" id="lo">Salir</button></div>
 <div id="v1"><div class="st"><div><b id="n0">0</b>Respuestas</div><div><b id="n1">0</b>Asistirán</div><div><b id="n2">0</b>No asistirán</div></div>
-<div class="row"><input id="q" placeholder="Buscar por nombre"><select id="f"><option value="">Todas</option><option value="attending">Asistirán</option><option value="not_attending">No asistirán</option></select></div>
+<div class="row"><input id="q" placeholder="Buscar por nombre"><select id="f"><option value="">Todas</option><option value="attending">Asistirán</option><option value="not_attending">No asistirán</option></select><button class="s" id="ex">Exportar CSV</button></div>
 <div class="box w"><table><thead><tr><th>NOMBRE</th><th>RESPUESTA</th><th>FECHA</th></tr></thead><tbody id="tb"></tbody></table><p id="e1" hidden>Aún no hay respuestas.</p></div></div>
-<div id="v2" hidden><div class="box w"><table><thead><tr><th>NOMBRE</th><th>MENSAJE</th><th>ESTADO</th><th></th></tr></thead><tbody id="mb"></tbody></table><p id="e2" hidden>Aún no hay mensajes.</p></div></div>
+<div id="v2" hidden><div class="row"><select id="pf"><option value="pending">Pendientes</option><option value="approved">Aprobadas</option><option value="rejected">Rechazadas</option><option value="">Todas</option></select></div><div class="box"><div class="ph" id="pg"></div><p id="e2" hidden>No hay fotos en este filtro.</p></div></div>
+<div id="v3" hidden><div class="row"><select id="mf"><option value="pending">Pendientes</option><option value="approved">Aprobados</option><option value="off">Rechazados / ocultos</option><option value="">Todos</option></select></div><div class="box w"><table><thead><tr><th>NOMBRE</th><th>MENSAJE</th><th>ESTADO</th><th></th></tr></thead><tbody id="mb"></tbody></table><p id="e3" hidden>No hay mensajes en este filtro.</p></div></div>
 </div></main>
 <script src="config.js"></script>
 <script>
-const $=id=>document.getElementById(id);let tok=sessionStorage.getItem('t')||'',R=[],M=[];
+const $=id=>document.getElementById(id);let tok=sessionStorage.getItem('t')||'',R=[],M=[],P=[];
 const H=()=>({apikey:SB.key,Authorization:'Bearer '+tok,'Content-Type':'application/json'});
 const fd=s=>new Date(s).toLocaleString('es-PE',{timeZone:'America/Lima',dateStyle:'medium',timeStyle:'short'});
-const ST={attending:'Asistirá',not_attending:'No asistirá',pending:'Pendiente',approved:'Aprobado',hidden:'Oculto'};
-function td(t){const c=document.createElement('td');c.textContent=t;return c}
+const ST={attending:'Asistirá',not_attending:'No asistirá',pending:'Pendiente',approved:'Aprobado',hidden:'Oculto',rejected:'Rechazado'};
+const td=t=>{const c=document.createElement('td');c.textContent=t;return c};
+const btn=(l,f,c)=>{const b=document.createElement('button');b.className=c||'s';b.textContent=l;b.onclick=f;return b};
 $('lf').onsubmit=async e=>{e.preventDefault();$('er').textContent='';
- if(!SB||SB.url.startsWith('PEGA')){$('er').textContent='Falta configurar config.js';return}
+ if(!window.SB||SB.url.startsWith('PEGA')){$('er').textContent='Falta configurar config.js';return}
  const r=await fetch(SB.url+'/auth/v1/token?grant_type=password',{method:'POST',headers:{apikey:SB.key,'Content-Type':'application/json'},body:JSON.stringify({email:$('em').value,password:$('pw').value})});
  if(!r.ok){$('er').textContent='Correo o contraseña incorrectos.';return}tok=(await r.json()).access_token;sessionStorage.setItem('t',tok);$('pw').value='';load()};
 async function get(p){const r=await fetch(SB.url+'/rest/v1/'+p,{headers:H()});if(!r.ok)throw 0;return r.json()}
 async function load(){try{const a=await get('admins?select=user_id');if(!a.length){out('Esta cuenta no es administradora.');return}
- R=await get('rsvps?select=*&order=created_at.desc');M=await get('guest_messages?select=*&order=created_at.desc');$('lg').hidden=true;$('app').hidden=false;draw()}catch{out('Sesión vencida. Entra de nuevo.')}}
+ R=await get('rsvps?select=*&order=created_at.desc');M=await get('guest_messages?select=*&order=created_at.desc');P=await get('guest_photos?select=*&order=created_at.desc');$('lg').hidden=true;$('app').hidden=false;draw()}catch{out('Sesión vencida o falta ejecutar migracion-2.sql. Entra de nuevo.')}}
 function out(m){tok='';sessionStorage.removeItem('t');$('app').hidden=true;$('lg').hidden=false;$('er').textContent=m}
+const BL={};async function blob(p){if(BL[p])return BL[p];const r=await fetch(SB.url+'/storage/v1/object/authenticated/guest-photos/'+p,{headers:{apikey:SB.key,Authorization:'Bearer '+tok}});if(!r.ok)return'';return BL[p]=URL.createObjectURL(await r.blob())}
 function draw(){const q=$('q').value.trim().toLowerCase(),f=$('f').value;
  $('n0').textContent=R.length;$('n1').textContent=R.filter(r=>r.attendance_status==='attending').length;$('n2').textContent=R.filter(r=>r.attendance_status==='not_attending').length;
  const L=R.filter(r=>(!f||r.attendance_status===f)&&(!q||r.guest_name.toLowerCase().includes(q)));
  const tb=$('tb');tb.textContent='';L.forEach(r=>{const tr=document.createElement('tr');tr.append(td(r.guest_name),td(ST[r.attendance_status]),td(fd(r.updated_at||r.created_at)));tb.appendChild(tr)});$('e1').hidden=L.length>0;
- const mb=$('mb');mb.textContent='';M.forEach(m=>{const tr=document.createElement('tr');tr.append(td(m.guest_name),td(m.message),td(ST[m.moderation_status]));const c=document.createElement('td');
-  [['approved','Aprobar'],['hidden','Ocultar']].forEach(([s,l])=>{if(m.moderation_status===s)return;const b=document.createElement('button');b.className='s';b.textContent=l;b.onclick=()=>mod(m.id,s);c.appendChild(b)});tr.appendChild(c);mb.appendChild(tr)});$('e2').hidden=M.length>0}
-async function mod(id,s){const r=await fetch(SB.url+'/rest/v1/guest_messages?id=eq.'+id,{method:'PATCH',headers:H(),body:JSON.stringify({moderation_status:s,moderated_at:new Date().toISOString()})});if(r.ok)load();else alert('No se pudo actualizar.')}
+ const pf=$('pf').value,PL=P.filter(p=>!pf||p.status===pf),pg=$('pg');pg.textContent='';
+ PL.forEach(p=>{const d=document.createElement('div'),im=new Image();im.alt='Foto de invitado';im.title='Pulsa para abrir en grande';blob(p.storage_path).then(u=>{im.src=u});im.onclick=()=>blob(p.storage_path).then(u=>u&&window.open(u,'_blank'));
+  const i=document.createElement('div');i.textContent=ST[p.status]+' · '+fd(p.created_at);i.style.fontSize='.8rem';const r=document.createElement('div');r.className='row';
+  if(p.status!=='approved')r.append(btn('Aprobar',()=>setP(p,'approved')));if(p.status==='pending')r.append(btn('Rechazar',()=>setP(p,'rejected')));if(p.status==='approved')r.append(btn('Retirar de la galería',()=>setP(p,'rejected')));
+  r.append(btn('Eliminar',()=>delP(p),'d'));d.append(im,i,r);pg.appendChild(d)});$('e2').hidden=PL.length>0;
+ const mf=$('mf').value,ML=M.filter(m=>!mf||(mf==='off'?['rejected','hidden'].includes(m.moderation_status):m.moderation_status===mf)),mb=$('mb');mb.textContent='';
+ ML.forEach(m=>{const tr=document.createElement('tr');tr.append(td(m.guest_name),td(m.message),td(ST[m.moderation_status]));const c=document.createElement('td');
+  if(m.moderation_status!=='approved')c.append(btn('Aprobar',()=>setM(m,'approved')));if(m.moderation_status==='pending')c.append(btn('Rechazar',()=>setM(m,'rejected')));if(m.moderation_status==='approved')c.append(btn('Ocultar',()=>setM(m,'hidden')));
+  c.append(btn('Eliminar',()=>delM(m),'d'));tr.appendChild(c);mb.appendChild(tr)});$('e3').hidden=ML.length>0}
+async function patch(tbl,id,s){const r=await fetch(SB.url+'/rest/v1/'+tbl+'?id=eq.'+id,{method:'PATCH',headers:H(),body:JSON.stringify({[tbl==='guest_photos'?'status':'moderation_status']:s,moderated_at:new Date().toISOString()})});if(!r.ok){alert('No se pudo actualizar.');return}await load()}
+const setP=(p,s)=>patch('guest_photos',p.id,s),setM=(m,s)=>patch('guest_messages',m.id,s);
+async function delP(p){if(!confirm('¿Eliminar DEFINITIVAMENTE esta foto? No se puede deshacer.'))return;
+ const a=await fetch(SB.url+'/storage/v1/object/guest-photos/'+p.storage_path,{method:'DELETE',headers:H()});if(!a.ok){alert('No se pudo borrar el archivo.');return}
+ const b=await fetch(SB.url+'/rest/v1/guest_photos?id=eq.'+p.id,{method:'DELETE',headers:H()});if(!b.ok)alert('Se borró el archivo pero no el registro.');await load()}
+async function delM(m){if(!confirm('¿Eliminar DEFINITIVAMENTE este mensaje? No se puede deshacer.'))return;const r=await fetch(SB.url+'/rest/v1/guest_messages?id=eq.'+m.id,{method:'DELETE',headers:H()});if(!r.ok)alert('No se pudo eliminar.');await load()}
 const csvc=v=>{v=String(v??'');if(/^[=+\-@\t\r]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
 $('ex').onclick=()=>{const rows=[['Nombre','Respuesta','Fecha de respuesta (Lima)'],...R.map(r=>[r.guest_name,ST[r.attendance_status],fd(r.updated_at||r.created_at)])];
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+rows.map(r=>r.map(csvc).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'}));a.download='confirmaciones-boda.csv';a.click()};
-$('q').oninput=$('f').onchange=draw;$('rf').onclick=load;$('lo').onclick=()=>out('');
-$('t1').onclick=()=>{$('v1').hidden=false;$('v2').hidden=true};$('t2').onclick=()=>{$('v1').hidden=true;$('v2').hidden=false};
+$('q').oninput=$('f').onchange=$('pf').onchange=$('mf').onchange=draw;$('rf').onclick=load;$('lo').onclick=()=>out('');
+const tabs=n=>{[1,2,3].forEach(i=>{$('v'+i).hidden=i!==n;$('t'+i).className=i===n?'on':'s'})};$('t1').onclick=()=>tabs(1);$('t2').onclick=()=>tabs(2);$('t3').onclick=()=>tabs(3);tabs(1);
 if(tok)load();
 </script></body></html>
