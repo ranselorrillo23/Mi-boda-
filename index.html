@@ -209,20 +209,23 @@ function show(el,msg){el.hidden=false;el.textContent=msg}
 const mm=$('mm');mm.oninput=()=>$('cc').textContent=mm.value.length+" / 500";
 const SBOK=()=>window.SB&&SB.url&&!SB.url.startsWith('PEGA');
 function dk(){try{let k=localStorage.getItem('dk');if(!k){k=(crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2)+Date.now().toString(16)+'0123456789abcdef').replace(/-/g,'');localStorage.setItem('dk',k)}return k}catch{return 'x'+Date.now().toString(16)+Math.random().toString(16).slice(2)+'0123456789abcdef'}}
-async function rpc(fn,body){if(!SBOK())throw new Error('config');const r=await fetch(SB.url+'/rest/v1/rpc/'+fn,{method:'POST',headers:{'Content-Type':'application/json',apikey:SB.key,Authorization:'Bearer '+SB.key},body:JSON.stringify(body)});if(!r.ok)throw new Error(await r.text())}
+if(window.SB){SB.url=String(SB.url||'').trim().replace(/\/+$/,'').replace(/\/rest\/v1$/,'');SB.key=String(SB.key||'').trim()}
+const AH=()=>{const h={apikey:SB.key};if(SB.key.startsWith('eyJ'))h.Authorization='Bearer '+SB.key;return h};
+const dbg=x=>/[?&]debug/.test(location.search)?' ['+String(x&&x.message||x).slice(0,300)+']':'';
+async function rpc(fn,body){if(!SBOK())throw new Error('config: falta pegar la URL y la clave en config.js');const r=await fetch(SB.url+'/rest/v1/rpc/'+fn,{method:'POST',headers:{'Content-Type':'application/json',...AH()},body:JSON.stringify(body)});if(!r.ok)throw new Error('HTTP '+r.status+' '+(await r.text()))}
 $('rf').onsubmit=async e=>{e.preventDefault();const n=$('rn').value.trim(),a=document.querySelector('input[name=a]:checked'),b=e.target.querySelector('button[type=submit]');
  $('rne').textContent=n?'':'Escribe tu nombre completo.';$('rae').textContent=a?'':'Elige una de las dos opciones.';if(!n||!a)return;
  b.disabled=true;const t0=b.textContent;b.textContent='ENVIANDO…';$('rs').hidden=true;
  try{await rpc('submit_rsvp',{p_name:n,p_status:a.value,p_key:dk()});show($('rs'),a.value==='attending'?'¡Qué alegría! Hemos recibido tu confirmación. Nos hace mucha ilusión compartir este día contigo.':'Gracias por avisarnos. Te enviamos todo nuestro cariño y agradecemos que nos hayas respondido.')}
- catch(x){show($('rs'),'No pudimos registrar tu respuesta. Por favor, inténtalo nuevamente.')}
+ catch(x){show($('rs'),'No pudimos registrar tu respuesta. Por favor, inténtalo nuevamente.'+dbg(x))}
  b.disabled=false;b.textContent=t0};
-async function loadMsgs(){if(!SBOK())return;try{const r=await fetch(SB.url+'/rest/v1/guest_messages?select=id,guest_name,message,created_at&moderation_status=eq.approved&order=created_at.desc&limit=100',{headers:{apikey:SB.key,Authorization:'Bearer '+SB.key}});if(!r.ok)return;const d=await r.json();const l=$('ml');l.textContent='';d.forEach(m=>{const c=document.createElement('div');c.className='mc';const b=document.createElement('b');b.textContent=m.guest_name;const p=document.createElement('p');p.textContent=m.message;c.append(b,p);l.appendChild(c)});$('me').hidden=d.length>0}catch{}}
+async function loadMsgs(){if(!SBOK())return;try{const r=await fetch(SB.url+'/rest/v1/guest_messages?select=id,guest_name,message,created_at&order=created_at.desc&limit=100',{headers:{...AH()}});if(!r.ok)return;const d=await r.json();const l=$('ml');l.textContent='';d.forEach(m=>{const c=document.createElement('div');c.className='mc';const b=document.createElement('b');b.textContent=m.guest_name;const p=document.createElement('p');p.textContent=m.message;c.append(b,p);l.appendChild(c)});$('me').hidden=d.length>0}catch{}}
 loadMsgs();
 $('mf').onsubmit=async e=>{e.preventDefault();const n=$('mn').value.trim(),m=mm.value.trim(),b=e.target.querySelector('button[type=submit]');
  $('mne').textContent=n?'':'Escribe tu nombre.';$('mme').textContent=m?'':'Escribe tu mensaje.';if(!n||!m)return;
  b.disabled=true;const t0=b.textContent;b.textContent='ENVIANDO…';$('ms').hidden=true;
  try{await rpc('submit_message',{p_name:n,p_message:m,p_key:dk()});show($('ms'),'¡Gracias! Recibimos tu mensaje y aparecerá aquí cuando los novios lo aprueben.');$('mn').value='';mm.value='';$('cc').textContent='0 / 500'}
- catch(x){show($('ms'),String(x.message).includes('limite')?'Enviaste varios mensajes seguidos. Inténtalo de nuevo más tarde.':'No pudimos guardar tu mensaje. Por favor, inténtalo nuevamente.')}
+ catch(x){show($('ms'),String(x.message).includes('limite')?'Enviaste varios mensajes seguidos. Inténtalo de nuevo más tarde.':'No pudimos guardar tu mensaje. Por favor, inténtalo nuevamente.'+dbg(x))}
  b.disabled=false;b.textContent=t0};
 // Galería (fotos 2..9, en el orden en que las enviaste; la 1 es la portada)
 let G=PH.slice(1),GA=ALTS;const GAL=G,POS=["50% 50%","45% 40%","50% 35%","50% 40%","50% 45%","45% 55%","50% 35%","52% 50%"];let cur=0;
@@ -266,11 +269,11 @@ $('px').onclick=()=>{sel.forEach(s=>URL.revokeObjectURL(s.url));sel=[];renderSel
 $('pu').onclick=async()=>{const b=$('pu');b.disabled=true;$('pe').textContent='';let ok=0;const rest=[];const ps=$('ps');
  for(let i=0;i<sel.length;i++){const s=sel[i];show(ps,'Subiendo '+(i+1)+' de '+sel.length+'…');
   try{if(!SBOK())throw 0;const [blob,mime,ext]=await shrink(s.f,s.t);const path='pending/'+uid()+'.'+ext;
-   const r=await fetch(SB.url+'/storage/v1/object/guest-photos/'+path,{method:'POST',headers:{apikey:SB.key,Authorization:'Bearer '+SB.key,'Content-Type':mime,'x-upsert':'false'},body:blob});if(!r.ok)throw 0;
+   const r=await fetch(SB.url+'/storage/v1/object/guest-photos/'+path,{method:'POST',headers:{...AH(),'Content-Type':mime,'x-upsert':'false'},body:blob});if(!r.ok)throw 0;
    await rpc('register_photo',{p_path:path,p_mime:mime,p_size:blob.size,p_key:dk()});ok++;URL.revokeObjectURL(s.url)}catch{rest.push(s)}}
  sel=rest;renderSel();b.disabled=false;
  show(ps,rest.length?(ok?ok+' foto(s) se subieron, pero '+rest.length+' fallaron. Puedes intentarlo de nuevo.':'No pudimos subir tus fotos. Por favor, inténtalo nuevamente.'):'¡Gracias! Tus '+ok+' foto(s) se subieron y se publicarán cuando los novios las aprueben.')};
-async function loadShared(){if(!SBOK())return;try{const H={apikey:SB.key,Authorization:'Bearer '+SB.key};const r=await fetch(SB.url+'/rest/v1/guest_photos?select=id,storage_path&status=eq.approved&order=created_at.desc&limit=40',{headers:H});if(!r.ok)return;const d=await r.json();
+async function loadShared(){if(!SBOK())return;try{const H={...AH()};const r=await fetch(SB.url+'/rest/v1/guest_photos?select=id,storage_path&order=created_at.desc&limit=40',{headers:H});if(!r.ok)return;const d=await r.json();
  const us=(await Promise.all(d.map(async p=>{try{const x=await fetch(SB.url+'/storage/v1/object/authenticated/guest-photos/'+p.storage_path,{headers:H});return x.ok?URL.createObjectURL(await x.blob()):null}catch{return null}}))).filter(Boolean);
  const g=$('sg');g.textContent='';const al=us.map((_,i)=>'Foto compartida por un invitado '+(i+1));us.forEach((u,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Ampliar foto compartida '+(i+1));const im=new Image();im.src=u;im.alt=al[i];im.loading='lazy';b.appendChild(im);b.onclick=()=>{G=us;GA=al;op(i)};g.appendChild(b)})}catch{}}
 loadShared();
