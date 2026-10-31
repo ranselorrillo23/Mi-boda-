@@ -24,6 +24,7 @@ table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left
 </div></main>
 <script src="config.js"></script>
 <script>
+if(window.SB){SB.url=String(SB.url||'').trim().replace(/\/+$/,'').replace(/\/rest\/v1$/,'');SB.key=String(SB.key||'').trim()}
 const $=id=>document.getElementById(id);let tok=sessionStorage.getItem('t')||'',R=[],M=[],P=[];
 const H=()=>({apikey:SB.key,Authorization:'Bearer '+tok,'Content-Type':'application/json'});
 const fd=s=>new Date(s).toLocaleString('es-PE',{timeZone:'America/Lima',dateStyle:'medium',timeStyle:'short'});
