@@ -115,7 +115,11 @@ header{background:rgba(246,242,234,.88)!important;backdrop-filter:blur(10px);bor
 .cover .count{margin:22px auto 24px;max-width:460px}.cover .row{justify-content:center}
 @media(min-width:900px){.cv{grid-template-columns:1fr 1fr;gap:56px;text-align:left}.cph{margin:0 0 0 auto}.cover .count{margin-left:0}.cover .row{justify-content:flex-start}}
 body.lock{overflow:hidden}
-.cph{max-height:50svh}@media(min-width:900px){.cph{max-height:none}}
+.grid .fit{position:relative}.grid .fit .bgf{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(16px) brightness(.75);transform:scale(1.2)}.grid .fit img:not(.bgf){position:relative}
+@media(max-width:699px){#gr button:first-child{grid-column:span 2}}
+@media(min-width:700px){#gr{grid-template-columns:repeat(3,1fr);max-width:820px;margin:0 auto}}
+.sw figure em{letter-spacing:.12em;font:500 .68rem Inter,sans-serif;text-transform:uppercase}
+.cph{max-height:44svh}@media(min-width:900px){.cph{max-height:none}}
 @media(max-width:600px){.mu .st,.mu input{display:none}.mu{padding:6px}}
 .sheet:focus-visible{outline:2px solid var(--az);outline-offset:-4px}
 .wl{position:fixed;inset:0;z-index:300;display:grid;place-items:center;background:radial-gradient(60% 30% at 25% 15%,rgba(255,255,255,.8),transparent 70%),radial-gradient(50% 25% at 80% 30%,rgba(255,255,255,.6),transparent 70%),linear-gradient(180deg,#c9dbe5 0,#e4edf0 45%,#F6F2EA 100%);overflow:hidden;transition:opacity 1s ease,visibility 1s}.wl.out{opacity:0;visibility:hidden}
@@ -154,7 +158,7 @@ body.lock{overflow:hidden}
 <main>
 <section class="cover" id="inicio"><div class="cv"><div class="cph"><img src="img/portada.jpg" alt="Ransel y Jhuliana sonriendo junto al mar, de noche" fetchpriority="high"></div>
 <div class="ct"><div class="tag2">NOS CASAMOS</div><h1 class="names2">Ransel <i>&</i> Jhuliana</h1>
-<p class="d1">Jueves 17 de diciembre de 2026</p><p class="d1">3:00 p. m.</p><p class="d3">Calle Gaspar Monge 150 — San Borja, Lima</p>
+<p class="d1">Jueves 17 de diciembre de 2026</p><p class="d1" data-hora>4:00 p. m.</p><p class="d3">Calle Gaspar Monge 150 — San Borja, Lima</p>
 <div class="count" id="cdg"><div><b id="d">--</b><span>DÍAS</span></div><div><b id="h">--</b><span>HORAS</span></div><div><b id="m">--</b><span>MINUTOS</span></div><div><b id="s">--</b><span>SEGUNDOS</span></div></div><p class="cdm" id="cdm" hidden></p>
 <div class="row"><button class="btn" id="open">DESCUBRIR LOS DETALLES</button><a class="btn ln" href="#rsvp">CONFIRMAR ASISTENCIA</a></div></div></div></section>
 
@@ -164,13 +168,13 @@ body.lock{overflow:hidden}
 <div class="tl"><div class="ti rv"><small>17 · 06 · 2024</small><h3>El primer encuentro</h3><p>El 17 de junio de 2024, sus caminos se cruzaron por primera vez. Poco a poco comenzaron a conocerse, a compartir momentos y a descubrir que había algo especial entre ellos.</p></div><div class="ti rv"><small>09 · 09 · 2024</small><h3>La primera cita</h3><p>El 9 de septiembre de 2024 tuvieron su primera cita en Starbucks de Plaza San Miguel. Allí compartieron conversaciones, risas y momentos que poco a poco fueron haciendo crecer su historia.</p></div><div class="ti rv"><small>13 · 09 · 2024</small><h3>El comienzo de nuestra historia</h3><p>Y fue precisamente allí, el 13 de septiembre de 2024, donde comenzaron oficialmente su historia de amor.</p><p>Pasó el tiempo y aquel lugar siguió formando parte de sus recuerdos más bonitos.</p></div><div class="ti rv"><small>17 · 08 · 2025</small><h3>La propuesta</h3><p>Por eso, cuando llegó el momento de hacerle la pregunta más importante, Ransel quiso volver al mismo lugar donde todo había comenzado.</p><p>El 17 de agosto de 2025, después de la iglesia, regresaron a aquel Starbucks. Esta vez, Ransel llevaba consigo un anillo y una pregunta que guardaba en el corazón.</p></div><div class="ti rv"><small>COSTA VERDE</small><h3>Ella dijo que sí</h3><p>Después fueron juntos hacia la Costa Verde, donde Ransel le pidió a Jhuliana que compartiera con él el resto del camino.</p><p>Y ella dijo que sí.</p><p>Así, el lugar donde un día comenzó su historia volvió a ser testigo de otro de sus momentos más importantes.</p></div></div>
 <p class="story rv" style="margin-top:2rem">Y desde aquel primer encuentro, <b style="font-weight:500">Ransel y Jhuliana siguen escribiendo, juntos, su historia de amor.</b></p><div class="row"><button class="btn ln" id="hc">VOLVER A LA INVITACIÓN</button></div></div></section>
 
-<div class="band" id="detalles"><div class="in2 rv"><h2>Detalles de la boda</h2><div class="facts"><div class="fact"><small>FECHA</small><h3>Jueves 17 de diciembre de 2026</h3></div><div class="fact"><small>HORA</small><h3>3:00 p. m.</h3></div><div class="fact"><small>LUGAR</small><h3>San Borja, Lima</h3></div></div>
+<div class="band" id="detalles"><div class="in2 rv"><h2>Detalles de la boda</h2><div class="facts"><div class="fact"><small>FECHA</small><h3>Jueves 17 de diciembre de 2026</h3></div><div class="fact"><small>HORA</small><h3 data-hora>4:00 p. m.</h3></div><div class="fact"><small>LUGAR</small><h3>San Borja, Lima</h3></div></div>
 <div class="row"><a class="btn" id="how" target="_blank" rel="noopener">CÓMO LLEGAR</a><button class="btn ln" id="ics">AGREGAR A MI CALENDARIO</button></div></div></div>
 
 <section id="vestimenta" class="rv"><h2>Un detalle para nuestro gran día</h2><p class="sub">Para nuestro día especial hemos elegido una paleta de colores que nos ayudará a crear una celebración armoniosa y elegante. Te invitamos a elegir tu atuendo entre los tonos sugeridos.</p>
 <h3 class="dh">PALETA PARA INVITADOS</h3><div class="sw" role="list"><figure role="listitem"><span style="background:#263544"></span><b>Azul marino</b><code>#263544</code></figure><figure role="listitem"><span style="background:#89958B"></span><b>Verde salvia</b><code>#89958B</code></figure><figure role="listitem"><span style="background:#78816A"></span><b>Verde oliva suave</b><code>#78816A</code></figure><figure role="listitem"><span style="background:#A7A9AC"></span><b>Gris elegante</b><code>#A7A9AC</code></figure><figure role="listitem"><span style="background:#C7A9A0"></span><b>Rosa empolvado</b><code>#C7A9A0</code></figure></div>
-<h3 class="dh">COLORES RESERVADOS</h3><div class="sw" role="list"><figure role="listitem"><span style="background:#6F97AD"></span><b>Azul suave</b><code>#6F97AD</code></figure><figure role="listitem"><span style="background:#D8CBB8"></span><b>Beige</b><code>#D8CBB8</code><em>Novio y pajes</em></figure><figure role="listitem"><span style="background:#FFFFFF"></span><b>Blanco</b><code>#FFFFFF</code><em>Novia</em></figure></div>
-<p class="note">El blanco está reservado para la novia, el beige para el novio y los pajes, y el azul marino para las damas.</p>
+<h3 class="dh">COLORES RESERVADOS</h3><div class="sw" role="list"><figure role="listitem"><span style="background:#FFFFFF"></span><b>Blanco</b><code>#FFFFFF</code><em>NOVIA</em></figure><figure role="listitem"><span style="background:#D8CBB8"></span><b>Beige</b><code>#D8CBB8</code><em>NOVIO Y PAJES</em></figure><figure role="listitem"><span style="background:#6F97AD"></span><b>Azul suave</b><code>#6F97AD</code><em>DAMAS</em></figure></div>
+<p class="note">El blanco está reservado para la novia, el beige para el novio y los pajes, y el azul suave para las damas.</p>
 <p class="note">Gracias por respetar nuestra paleta de colores y ayudarnos a mantener la armonía de este día tan especial.</p>
 <p class="note b">Esta celebración está organizada sin bebés. Agradecemos mucho tu comprensión y cariño.</p></section>
 
@@ -226,7 +230,7 @@ body.lock{overflow:hidden}
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galería ampliada"><button class="x" id="lx" aria-label="Cerrar">✕</button><button class="p" id="lp" aria-label="Foto anterior">‹</button><img id="li" alt=""><button class="n" id="ln" aria-label="Foto siguiente">›</button></div>
 <script src="config.js"></script>
 <script>
-const CFG={title:"Boda de Ransel & Jhuliana",address:"Calle Gaspar Monge 150, San Borja, Lima, Perú",eventUTC:Date.UTC(2026,11,17,20,0,0),durationHours:5,video:"vK6pwU9yABw"};
+const CFG={title:"Boda de Ransel & Jhuliana",address:"Calle Gaspar Monge 150, San Borja, Lima, Perú",hora:"4:00 p. m.",eventUTC:Date.parse("2026-12-17T16:00:00-05:00"),durationHours:5,video:"vK6pwU9yABw"};
 const PH=["img/galeria-01.jpg","img/galeria-02.jpg","img/galeria-03.jpg"];
 const ALTS=["Ransel arrodillado con el anillo frente a Jhuliana, que se cubre el rostro emocionada","Ransel y Jhuliana se abrazan frente a una pancarta que dice ¿Te casarías conmigo?","Jhuliana muestra su anillo junto a Ransel, con un globo de corazón"];
 const GIFTS=["Freidora de aire","Licuadora","Cafetera","Hervidor eléctrico","Tostadora","Microondas","Olla arrocera","Juego de ollas","Vajilla completa","Juego de cubiertos","Copas y vasos","Sartenes","Cuadros decorativos","Jarrones","Plantas ornamentales","Lámpara de pie","Difusor aromático","Velas aromáticas","Reloj de pared","Cojines decorativos","Organizadores para el hogar"];
@@ -269,8 +273,8 @@ $('mf').onsubmit=async e=>{e.preventDefault();const n=$('mn').value.trim(),m=mm.
  catch(x){show($('ms'),String(x.message).includes('limite')?'Enviaste varios mensajes seguidos. Inténtalo de nuevo más tarde.':'No pudimos guardar tu mensaje. Por favor, inténtalo nuevamente.'+dbg(x))}
  b.disabled=false;b.textContent=t0};
 // Galería (fotos 2..9, en el orden en que las enviaste; la 1 es la portada)
-let G=PH.slice(0),GA=ALTS;const GAL=G,POS=["50% 38%","92% 50%","50% 100%"];let cur=0;
-G.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Ampliar fotografía '+(i+1));const im=new Image();im.src=s;im.alt=ALTS[i]||"Ransel y Jhuliana";im.loading="lazy";im.style.objectPosition=POS[i]||"50% 35%";b.appendChild(im);b.onclick=()=>{G=GAL;GA=ALTS;op(i)};$('gr').appendChild(b)});
+let G=PH.slice(0),GA=ALTS;const GAL=G,POS=["50% 62%","fit","50% 100%"];let cur=0;
+G.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Ampliar fotografía '+(i+1));const im=new Image();im.src=s;im.alt=ALTS[i]||"Ransel y Jhuliana";im.loading="lazy";if(POS[i]==="fit"){b.classList.add("fit");const bi=new Image();bi.src=s;bi.alt="";bi.className="bgf";b.appendChild(bi);im.style.objectFit="contain"}else im.style.objectPosition=POS[i]||"50% 35%";b.appendChild(im);b.onclick=()=>{G=GAL;GA=ALTS;op(i)};$('gr').appendChild(b)});
 function paint(){$('li').src=G[cur];$('li').alt=GA[cur]||"Ransel y Jhuliana"}
 function op(i){cur=i;paint();$('lb').classList.add('on');$('lx').focus()}
 const cl=()=>$('lb').classList.remove('on'),go=d=>{cur=(cur+d+G.length)%G.length;paint()};
@@ -351,6 +355,7 @@ function sfx(){try{const A=window.AudioContext||window.webkitAudioContext;if(!A)
   if(RM){finish();return}
   const p=$('pts');for(let i=0;i<18;i++){const e=document.createElement('i');e.className='pt';e.style.cssText='left:'+(40+Math.random()*20)+'%;top:'+(38+Math.random()*24)+'%;--x:'+((Math.random()-.5)*260)+'px;--y:'+(-60-Math.random()*200)+'px;--d:'+(1.6+Math.random())+'s;--l:'+(.5+Math.random()*.9)+'s';p.appendChild(e)}
   wl.classList.add('go');setTimeout(finish,2400)}})();
+document.querySelectorAll('[data-hora]').forEach(e=>e.textContent=CFG.hora);
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 </script></body></html>
